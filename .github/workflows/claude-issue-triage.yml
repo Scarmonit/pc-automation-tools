@@ -1,0 +1,77 @@
+name: Claude Issue Triage
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' || (github.event_name == 'issue_comment' && github.event.issue.pull_request == null)
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Claude Issue Analysis
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          mode: issue
+          prompt: |
+            Analyze this issue and:
+            1. Suggest appropriate labels (bug, enhancement, documentation, etc.)
+            2. Estimate complexity (easy, medium, hard)
+            3. Identify related code areas
+            4. Suggest potential solutions or next steps
+            5. Flag if this is a duplicate of existing issues
+            
+            Format your response with clear sections.
+          claude_args: |
+            --temperature 0.3
+            --max-tokens 2048
+            
+      - name: Auto-label Issue
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Parse Claude's response and apply labels
+            const issue_number = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            // Add labels based on Claude's analysis
+            await github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number,
+              labels: ['needs-review', 'ai-analyzed']
+            });
+            
+  respond-to-questions:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Claude Response
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          mode: chat
+          prompt: |
+            You are a helpful AI assistant for this repository.
+            Answer the user's question based on the codebase and documentation.
+            Be concise but thorough.
+          claude_args: |
+            --temperature 0.5
+            --max-tokens 2048
