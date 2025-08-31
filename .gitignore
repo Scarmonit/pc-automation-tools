@@ -1,0 +1,114 @@
+
+# Claude Flow generated files
+.claude/settings.local.json
+.mcp.json
+claude-flow.config.json
+.swarm/
+.hive-mind/
+memory/claude-flow-data.json
+memory/sessions/*
+!memory/sessions/README.md
+memory/agents/*
+!memory/agents/README.md
+coordination/memory_bank/*
+coordination/subtasks/*
+coordination/orchestration/*
+*.db
+*.db-journal
+*.db-wal
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+claude-flow
+claude-flow.bat
+claude-flow.ps1
+hive-mind-prompt-*.txt
+
+# Dependencies and virtual environments
+node_modules/
+venv/
+vendor/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+*.egg-info/
+dist/
+build/
+
+# Cache and temporary files
+.cache/
+*.log
+*.tmp
+.temp/
+tmp/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment files (keep example files)
+.env
+.env.local
+!.env.example
+!.env.taskmaster.example
+
+# Windows system files
+NTUSER.DAT*
+ntuser.dat*
+ntuser.ini
+
+# Personal directories (not for version control)
+AppData/
+Documents/
+Downloads/
+Desktop/
+Pictures/
+Videos/
+Music/
+Contacts/
+Favorites/
+Links/
+OneDrive/
+Searches/
+"Saved Games/"
+"VirtualBox VMs/"
+.VirtualBox/
+.android/
+.docker/
+.gnupg/
+.keras/
+.kube/
+.matplotlib/
+.redhat/
+.streamlit/
+.zed/
+.cursor/
+.chocolatey/
+.codegpt/
+.config/
+.d4lf/
+.junique/
+Oracle/
+curseforge/
+
+# Test outputs
+playwright-report/
+test-results/
+tests-examples/
+
+# WSL
+wsl-backup/
+
+# Projects moved to ~/projects/
+projects/
