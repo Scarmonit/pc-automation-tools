@@ -1,0 +1,50 @@
+# Queen Agent Dockerfile
+# Master coordinator for the swarm intelligence system
+
+FROM python:3.12-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy swarm intelligence files
+COPY .claude/swarm-intelligence/ai_platform_mcp_swarm.py /app/
+COPY .claude/swarm-intelligence/ai_platform_mcp_autonomous.py /app/
+COPY .claude/swarm-intelligence/swarm_config.json /app/
+COPY .claude/swarm-intelligence/prompts_config.json /app/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    aiohttp==3.9.1 \
+    anthropic==0.64.0 \
+    openai \
+    azure-cosmos \
+    azure-servicebus \
+    azure-keyvault-secrets \
+    azure-identity \
+    mcp==1.13.1 \
+    asyncio \
+    sqlite3-api
+
+# Environment variables (will be overridden by Azure)
+ENV AGENT_TYPE=queen \
+    AGENT_PRIORITY=10 \
+    MAX_INSTANCES=1 \
+    AZURE_COSMOS_ENDPOINT="" \
+    AZURE_COSMOS_KEY="" \
+    AZURE_SERVICE_BUS_CONNECTION_STRING="" \
+    AZURE_KEY_VAULT_URL=""
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import sys; sys.exit(0)"
+
+# Run the Queen agent
+CMD ["python", "-u", "ai_platform_mcp_swarm.py", "--agent-type", "queen"]

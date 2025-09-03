@@ -1,0 +1,104 @@
+{
+  "swarm_settings": {
+    "max_agents": 10,
+    "queen_agent_type": "strategic",
+    "consensus_algorithm": "majority",
+    "auto_scale": true,
+    "memory_size_mb": 100,
+    "task_timeout_seconds": 300,
+    "collaboration_enabled": true,
+    "distributed_memory": true
+  },
+  "agent_types": {
+    "queen": {
+      "max_instances": 1,
+      "capabilities": [
+        "coordination",
+        "strategy",
+        "analysis"
+      ],
+      "priority": 10
+    },
+    "architect": {
+      "max_instances": 2,
+      "capabilities": [
+        "system_design",
+        "architecture",
+        "planning"
+      ],
+      "priority": 8
+    },
+    "coder": {
+      "max_instances": 3,
+      "capabilities": [
+        "implementation",
+        "coding",
+        "debugging"
+      ],
+      "priority": 7
+    },
+    "tester": {
+      "max_instances": 2,
+      "capabilities": [
+        "testing",
+        "validation",
+        "qa"
+      ],
+      "priority": 6
+    },
+    "researcher": {
+      "max_instances": 2,
+      "capabilities": [
+        "research",
+        "information_gathering",
+        "analysis"
+      ],
+      "priority": 5
+    },
+    "analyst": {
+      "max_instances": 2,
+      "capabilities": [
+        "data_analysis",
+        "performance_analysis",
+        "insights"
+      ],
+      "priority": 5
+    },
+    "security": {
+      "max_instances": 1,
+      "capabilities": [
+        "security_analysis",
+        "vulnerability_assessment"
+      ],
+      "priority": 9
+    },
+    "optimizer": {
+      "max_instances": 1,
+      "capabilities": [
+        "performance_optimization",
+        "resource_management"
+      ],
+      "priority": 4
+    }
+  },
+  "memory_configuration": {
+    "database_path": "swarm_memory.db",
+    "retention_days": 30,
+    "max_memory_entries": 10000,
+    "compression_enabled": true,
+    "backup_enabled": true,
+    "sync_interval_seconds": 60
+  },
+  "collaboration_rules": {
+    "max_collaborators_per_task": 5,
+    "collaboration_timeout_seconds": 180,
+    "require_consensus_for_critical_tasks": true,
+    "auto_delegate_simple_tasks": true
+  },
+  "performance_thresholds": {
+    "max_task_execution_time": 600,
+    "max_agent_workload": 0.8,
+    "min_collaboration_score": 0.6,
+    "max_error_rate": 0.1
+  }
+}

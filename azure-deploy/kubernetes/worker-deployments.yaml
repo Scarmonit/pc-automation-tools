@@ -1,0 +1,300 @@
+# Architect Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-architect
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-architect
+    agent-type: architect
+    priority: "8"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: swarm-architect
+  template:
+    metadata:
+      labels:
+        app: swarm-architect
+        agent-type: architect
+    spec:
+      containers:
+      - name: architect-agent
+        image: <ACR_LOGIN_SERVER>/swarm-architect:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "architect"
+        - name: AGENT_PRIORITY
+          value: "8"
+        - name: MAX_INSTANCES
+          value: "2"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+# Coder Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-coder
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-coder
+    agent-type: coder
+    priority: "7"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: swarm-coder
+  template:
+    metadata:
+      labels:
+        app: swarm-coder
+        agent-type: coder
+    spec:
+      containers:
+      - name: coder-agent
+        image: <ACR_LOGIN_SERVER>/swarm-coder:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "coder"
+        - name: AGENT_PRIORITY
+          value: "7"
+        - name: MAX_INSTANCES
+          value: "3"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+---
+# Tester Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-tester
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-tester
+    agent-type: tester
+    priority: "6"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarm-tester
+  template:
+    metadata:
+      labels:
+        app: swarm-tester
+        agent-type: tester
+    spec:
+      containers:
+      - name: tester-agent
+        image: <ACR_LOGIN_SERVER>/swarm-tester:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "tester"
+        - name: AGENT_PRIORITY
+          value: "6"
+        - name: MAX_INSTANCES
+          value: "2"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+# Researcher Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-researcher
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-researcher
+    agent-type: researcher
+    priority: "5"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarm-researcher
+  template:
+    metadata:
+      labels:
+        app: swarm-researcher
+        agent-type: researcher
+    spec:
+      containers:
+      - name: researcher-agent
+        image: <ACR_LOGIN_SERVER>/swarm-researcher:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "researcher"
+        - name: AGENT_PRIORITY
+          value: "5"
+        - name: MAX_INSTANCES
+          value: "2"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+# Analyst Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-analyst
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-analyst
+    agent-type: analyst
+    priority: "5"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarm-analyst
+  template:
+    metadata:
+      labels:
+        app: swarm-analyst
+        agent-type: analyst
+    spec:
+      containers:
+      - name: analyst-agent
+        image: <ACR_LOGIN_SERVER>/swarm-analyst:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "analyst"
+        - name: AGENT_PRIORITY
+          value: "5"
+        - name: MAX_INSTANCES
+          value: "2"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+# Security Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-security
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-security
+    agent-type: security
+    priority: "9"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarm-security
+  template:
+    metadata:
+      labels:
+        app: swarm-security
+        agent-type: security
+    spec:
+      containers:
+      - name: security-agent
+        image: <ACR_LOGIN_SERVER>/swarm-security:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "security"
+        - name: AGENT_PRIORITY
+          value: "9"
+        - name: MAX_INSTANCES
+          value: "1"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+# Optimizer Agent Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-optimizer
+  namespace: swarm-intelligence
+  labels:
+    app: swarm-optimizer
+    agent-type: optimizer
+    priority: "4"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarm-optimizer
+  template:
+    metadata:
+      labels:
+        app: swarm-optimizer
+        agent-type: optimizer
+    spec:
+      containers:
+      - name: optimizer-agent
+        image: <ACR_LOGIN_SERVER>/swarm-optimizer:latest
+        imagePullPolicy: Always
+        env:
+        - name: AGENT_TYPE
+          value: "optimizer"
+        - name: AGENT_PRIORITY
+          value: "4"
+        - name: MAX_INSTANCES
+          value: "1"
+        envFrom:
+        - secretRef:
+            name: swarm-secrets
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
