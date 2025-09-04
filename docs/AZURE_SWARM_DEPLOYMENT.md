@@ -89,9 +89,9 @@ This creates:
 KV_NAME=$(grep -o '"name": "[^"]*"' azure-config.json | grep -A1 keyVault | tail -1 | cut -d'"' -f4)
 
 # Add your API keys
-az keyvault secret set --vault-name $KV_NAME --name anthropic-api-key --value "sk-ant-api03-YOUR-KEY"
+az keyvault secret set --vault-name $KV_NAME --name anthropic-api-key --value "your_anthropic_api_key_here"
 az keyvault secret set --vault-name $KV_NAME --name openai-api-key --value "sk-proj-YOUR-KEY"
-az keyvault secret set --vault-name $KV_NAME --name perplexity-api-key --value "pplx-YOUR-KEY"
+az keyvault secret set --vault-name $KV_NAME --name perplexity-api-key --value "your_perplexity_api_key_here"
 ```
 
 ### Step 3: Build and Push Docker Images
