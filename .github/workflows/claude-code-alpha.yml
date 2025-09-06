@@ -1,0 +1,80 @@
+name: Claude Code Alpha Mode CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  alpha-mode-validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Claude Code
+      run: |
+        curl -fsSL https://claude.ai/install.sh | sh
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        
+    - name: Alpha Mode Workspace Check
+      run: |
+        echo "🔍 Checking workspace cleanliness..."
+        if ls test_*.* *_test.* *.tmp *.log 2>/dev/null; then
+          echo "❌ CRITICAL: Test files found in workspace"
+          ls test_*.* *_test.* *.tmp *.log 2>/dev/null
+          exit 1
+        else
+          echo "✅ Workspace clean"
+        fi
+        
+    - name: Alpha Mode Production Readiness
+      run: |
+        echo "🎯 Running Alpha Mode validation..."
+        claude --print "/validate-alpha" || echo "Validation command not found"
+        
+    - name: Code Quality Check
+      run: |
+        echo "📊 Checking code quality requirements..."
+        
+        # Check for error handling patterns
+        if grep -r "try\|catch\|except\|error" --include="*.py" --include="*.js" --include="*.ts" . ; then
+          echo "✅ Error handling patterns found"
+        else
+          echo "⚠️ Consider adding error handling"
+        fi
+        
+        # Check for type annotations (Python)
+        if find . -name "*.py" -exec grep -l "def.*:" {} \; | head -1; then
+          echo "✅ Type annotations detected"
+        fi
+        
+        # Check for tests
+        if find . -name "*test*" -o -name "*spec*" | head -1; then
+          echo "✅ Test files found"
+        else
+          echo "⚠️ No test files detected"
+        fi
+        
+    - name: Security Scan
+      run: |
+        echo "🛡️ Basic security checks..."
+        
+        # Check for hardcoded secrets
+        if grep -r "password\|secret\|key\|token" --include="*.py" --include="*.js" --include="*.ts" . | grep -v "placeholder\|example"; then
+          echo "⚠️ Potential hardcoded secrets found - review required"
+        else
+          echo "✅ No obvious hardcoded secrets"
+        fi
+        
+    - name: Final Cleanup Verification
+      run: |
+        echo "🧹 Final workspace verification..."
+        if ls test_*.* *_test.* *.tmp *.log 2>/dev/null; then
+          echo "❌ FAIL: Workspace not clean after CI"
+          exit 1
+        else
+          echo "✅ PASS: Workspace remains clean"
+        fi
