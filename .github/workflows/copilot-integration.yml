@@ -1,0 +1,79 @@
+name: Copilot Integration Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**/*.py'
+      - '**/*.sh' 
+      - '.github/**/*'
+
+jobs:
+  copilot-review-check:
+    runs-on: ubuntu-latest
+    name: Verify Copilot can review files
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Check for file changes
+      id: changes
+      run: |
+        # Get list of changed files
+        CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+        
+        if [ -z "$CHANGED_FILES" ]; then
+          echo "No files changed in this PR"
+          echo "changed_files_count=0" >> $GITHUB_OUTPUT
+        else
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+          CHANGE_COUNT=$(echo "$CHANGED_FILES" | wc -l)
+          echo "changed_files_count=$CHANGE_COUNT" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Validate Python files
+      if: steps.changes.outputs.changed_files_count > 0
+      run: |
+        # Check Python syntax for changed Python files
+        for file in $(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '\.py$' || true); do
+          if [ -f "$file" ]; then
+            echo "Checking Python syntax: $file"
+            python3 -m py_compile "$file"
+          fi
+        done
+    
+    - name: Validate shell scripts
+      if: steps.changes.outputs.changed_files_count > 0  
+      run: |
+        # Check shell script syntax for changed shell files
+        for file in $(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '\.sh$' || true); do
+          if [ -f "$file" ]; then
+            echo "Checking shell script syntax: $file"
+            bash -n "$file"
+          fi
+        done
+    
+    - name: Run tests
+      if: steps.changes.outputs.changed_files_count > 0
+      run: |
+        # Run tests to ensure changes don't break functionality
+        if [ -f "test_automation.py" ]; then
+          echo "Running test automation..."
+          python3 -m unittest test_automation.py -v
+        fi
+    
+    - name: Comment on PR if no files changed
+      if: steps.changes.outputs.changed_files_count == 0
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '⚠️ **No file changes detected in this PR.**\n\nGitHub Copilot cannot review this PR because it contains no file changes. Please add some file modifications for Copilot to review.\n\nThis is likely why you saw the message: "Copilot wasn\'t able to review any files in this pull request."'
+          })

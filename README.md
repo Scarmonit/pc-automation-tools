@@ -105,6 +105,28 @@ python3 scripts/benchmark_system.py
 - **Continue** - VS Code AI extension
 - **Jan** - Desktop AI assistant
 
+## 🤖 GitHub Copilot Integration
+
+This repository is fully configured for GitHub Copilot to provide intelligent code assistance for AI automation workflows.
+
+### Features
+- **Enhanced Code Completion** - Context-aware suggestions for Python automation scripts
+- **AI Agent Development** - Specialized assistance for AutoGen and multi-agent systems  
+- **Shell Script Automation** - Smart suggestions for deployment and system scripts
+- **Security-First Coding** - Built-in patterns for secure AI application development
+
+### Configuration Files
+- `.github/copilot-instructions.md` - Repository-specific context and coding guidelines
+- `.github/copilot.yml` - Enhanced Copilot configuration for AI development
+- `.github/COPILOT_AGENT_GUIDE.md` - Integration guide for AI agents and workflows
+
+### Usage Tips
+- Ask Copilot to "Create an AutoGen agent for code review" 
+- Use prompts like "Generate secure API integration following repository patterns"
+- Request "Shell script with proper error handling using repository standards"
+
+See the [Copilot Agent Guide](.github/COPILOT_AGENT_GUIDE.md) for detailed integration examples.
+
 ## 🏗️ Architecture
 
 ```

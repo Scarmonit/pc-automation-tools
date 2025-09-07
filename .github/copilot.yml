@@ -1,10 +1,82 @@
 # .github/copilot.yml
-# Configuration for GitHub Copilot
+# Configuration for GitHub Copilot for PC Automation Tools
 version: 1
+
+# Enable core Copilot features
 features:
   completion:
     enabled: true
+    # Enhanced completion for Python automation scripts
+    languages:
+      python:
+        enabled: true
+        suggestions: enhanced
+      shell:
+        enabled: true
+        suggestions: enhanced
+      yaml:
+        enabled: true
+      json:
+        enabled: true
+  
   autoSuggestions:
     enabled: true
+    # Context-aware suggestions for AI agent development
+    contextLength: 8192
+    
   inlineSuggestions:
     enabled: true
+    # Real-time suggestions for automation workflows
+    
+  chatAssistant:
+    enabled: true
+    # AI-powered code assistance for complex automation tasks
+
+# Repository-specific configuration
+repository:
+  # Focus areas for enhanced assistance
+  domains:
+    - "ai-automation"
+    - "llm-integration" 
+    - "github-automation"
+    - "security-scanning"
+    - "agent-orchestration"
+  
+  # Key file patterns for enhanced context
+  patterns:
+    - "**/*automation*.py"
+    - "**/*agent*.py" 
+    - "scripts/**/*.sh"
+    - "llmstack/**/*.py"
+    - ".github/**/*"
+  
+  # Custom prompts for specific file types
+  prompts:
+    python_automation:
+      pattern: "**/*automation*.py"
+      context: "This is an automation script. Focus on error handling, logging, and API integration patterns."
+    
+    ai_agents:
+      pattern: "**/agents*.py"
+      context: "This involves AI agent configuration. Consider multi-agent coordination and LLM integration patterns."
+    
+    shell_scripts:
+      pattern: "**/*.sh"
+      context: "Shell script for system automation. Ensure proper error handling with 'set -e' and graceful fallbacks."
+
+# Advanced features for AI development
+ai_development:
+  # Enhanced suggestions for LLM integration
+  llm_patterns:
+    - "AutoGen agent configuration"
+    - "OpenAI API integration"
+    - "Local LLM deployment"
+    - "Agent conversation flows"
+  
+  # Code review focus areas
+  review_focus:
+    - "Security vulnerability patterns"
+    - "Error handling completeness"
+    - "API rate limiting"
+    - "Resource cleanup"
+    - "Type safety"
