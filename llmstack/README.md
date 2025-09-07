@@ -1,225 +1,212 @@
-# LLMStack Open Source Deployment - Windows Edition
+# 🚀 AI Development Stack - Complete Setup
 
-## 🚀 Quick Start
+## Overview
+A comprehensive AI development environment integrating multiple frameworks and tools for building intelligent applications.
 
-Open PowerShell as Administrator and run:
+## 🎯 Quick Start
 
-```powershell
-cd C:\Users\scarm\llmstack
-PowerShell -ExecutionPolicy Bypass -File .\DEPLOY_ALL.ps1
+Run the master control panel:
+```bash
+MASTER_CONTROL.bat
 ```
 
-Select option 1 for full installation.
-
-## 📋 System Requirements
-
-Your system status:
-- ✅ CPU: 32 cores (Excellent!)
-- ✅ RAM: 64GB (Perfect for large models)
-- ✅ Disk: 787GB free (Plenty of space)
-- ✅ Docker: Installed
-- ✅ Python: 3.12.10
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    User Interface                        │
-├─────────────────────────────────────────────────────────┤
-│  LLMStack UI │ Flowise │ OpenHands │ Grafana Dashboard  │
-├─────────────────────────────────────────────────────────┤
-│                    AI Agent Layer                        │
-├─────────────────────────────────────────────────────────┤
-│   AutoGen │ Aider │ Continue │ Custom Orchestrator      │
-├─────────────────────────────────────────────────────────┤
-│                  Local Model Servers                     │
-├─────────────────────────────────────────────────────────┤
-│     Ollama │ LM Studio │ vLLM (GPU) │ Jan API          │
-├─────────────────────────────────────────────────────────┤
-│                    Infrastructure                        │
-├─────────────────────────────────────────────────────────┤
-│  PostgreSQL │ Redis │ ChromaDB │ Prometheus │ Docker    │
-└─────────────────────────────────────────────────────────┘
+Or start everything at once:
+```bash
+START_AI_SYSTEM.bat
 ```
 
-## 📦 Included Components
+## 📦 Installed Components
 
-### Model Servers
-- **Ollama**: Primary local model server with multiple models
-- **LM Studio**: GUI-based model management
-- **vLLM**: High-performance GPU inference (if NVIDIA GPU available)
+### Core AI Frameworks
+- **MemGPT** - Memory-enhanced conversations
+- **AutoGen** - Multi-agent orchestration  
+- **CAMEL-AI** - Collaborative agents
+- **LocalAI** - Local model serving
 
-### Pre-installed Models
-- `llama3.2:3b` - Fast general purpose (2GB)
-- `mistral:7b-instruct` - Excellent reasoning (4GB)
-- `codellama:7b` - Code generation (4GB)
-- `qwen2.5:3b` - Multilingual support (2GB)
+### Development Tools
+- **OpenHands** (http://localhost:3000) - AI coding assistant
+- **Flowise** (http://localhost:3001) - Visual agent builder
+- **Unified Orchestrator** (http://localhost:5000) - Central control
 
-### AI Agents
-- **AutoGen**: Multi-agent conversations
-- **Flowise**: Visual workflow builder
-- **OpenHands**: Autonomous coding agent
-- **Aider**: CLI coding assistant
-- **Continue**: VS Code AI extension
+## 🌐 Service URLs
 
-### Monitoring
-- **Prometheus**: Metrics collection
-- **Grafana**: Visualization dashboards
+| Service | URL | Default Auth |
+|---------|-----|--------------|
+| OpenHands | http://localhost:3000 | None |
+| Flowise | http://localhost:3001 | admin / flowise123 |
+| LocalAI | http://localhost:8080 | None |
+| Orchestrator | http://localhost:5000 | None |
 
-## 🌐 Access Points
+## 📁 Project Structure
 
-After deployment, access your services at:
-
-| Service | URL | Credentials |
-|---------|-----|-------------|
-| LLMStack | http://localhost:3000 | Create on first login |
-| Flowise | http://localhost:3001 | None required |
-| OpenHands | http://localhost:3002 | None required |
-| Grafana | http://localhost:3003 | admin/admin |
-| Prometheus | http://localhost:9090 | None required |
-
-## 🔌 API Endpoints
-
-Use these endpoints in your applications:
-
-| Service | Endpoint | API Key |
-|---------|----------|---------|
-| Ollama | http://localhost:11434/v1 | `ollama` |
-| LM Studio | http://localhost:1234/v1 | `lm-studio` |
-| Jan | http://localhost:1337/v1 | `jan` |
-
-## 🛠️ Common Commands
-
-### Model Management
-```powershell
-# List installed models
-ollama list
-
-# Pull a new model
-ollama pull llama3.2:latest
-
-# Remove a model
-ollama rm model_name
+```
+llmstack/
+├── Core Systems/
+│   ├── ai_frameworks_integration.py - Framework integration
+│   ├── unified_orchestrator.py - Web-based orchestrator
+│   └── orchestrator.py - Simple request router
+│
+├── Setup Scripts/
+│   ├── MASTER_CONTROL.bat - Main control panel
+│   ├── START_AI_SYSTEM.bat - Quick launcher
+│   ├── setup_localai.bat - LocalAI installer
+│   ├── setup_flowise.bat - Flowise installer
+│   └── setup_openhands.bat - OpenHands installer
+│
+├── Test & Validation/
+│   ├── test_installations.py - Check framework installs
+│   ├── test_flowise.py - Test Flowise connection
+│   └── verify_connections.py - Verify all services
+│
+├── Configuration/
+│   ├── localai_config.yaml - LocalAI settings
+│   ├── flowise_agent_flow.json - Pre-built agent
+│   └── .claude/settings.json - Claude Code settings
+│
+└── Documentation/
+    ├── README_CLEAN.md - This file
+    ├── OPENHANDS_SETUP_GUIDE.md - OpenHands guide
+    ├── FLOWISE_AGENT_SETUP.md - Flowise guide
+    └── FLOWISE_QUICKSTART.md - Flowise quick start
 ```
 
-### Docker Management
-```powershell
-# View running containers
+## 🔧 Common Tasks
+
+### Start Individual Services
+```bash
+# LocalAI
+setup_localai.bat
+
+# Flowise
+docker start flowise
+
+# OpenHands
+docker start openhands
+
+# Orchestrator
+python unified_orchestrator.py
+```
+
+### Test Installation
+```bash
+python test_installations.py
+```
+
+### Check Service Status
+```bash
+python verify_connections.py
+```
+
+## 🐳 Docker Commands
+
+```bash
+# List running containers
 docker ps
 
 # View logs
-docker logs flowise
-docker logs openhands
+docker logs -f flowise
+docker logs -f openhands
 
-# Restart a service
-docker restart flowise
+# Restart services
+docker restart flowise openhands
 
-# Stop all services
-docker compose down
-
-# Start all services
-docker compose up -d
+# Stop all
+docker stop flowise openhands
 ```
 
-### Testing Inference
-```powershell
-# Test Ollama
-curl -X POST http://localhost:11434/v1/chat/completions `
-  -H "Content-Type: application/json" `
-  -d '{"model":"llama3.2:3b","messages":[{"role":"user","content":"Hello"}]}'
+## 🔌 API Integration
+
+### Flowise API
+```python
+import requests
+
+response = requests.post(
+    "http://localhost:3001/api/v1/prediction/<chatflow-id>",
+    json={"question": "Your prompt"}
+)
 ```
 
-## 🔧 Troubleshooting
+### Unified Orchestrator API
+```python
+import requests
 
-### Issue: Service won't start
-```powershell
-# Check logs
-docker logs container_name
-
-# Check port conflicts
-netstat -an | findstr :3000
+response = requests.post(
+    "http://localhost:5000/execute",
+    json={"task": "Your task", "framework": "auto"}
+)
 ```
 
-### Issue: Out of memory
-```powershell
-# Clean Docker
+## 🛠️ Configuration
+
+### LocalAI with Flowise
+1. In Flowise ChatOpenAI node:
+   - Base URL: `http://host.docker.internal:8080/v1`
+   - API Key: `sk-localai`
+
+### OpenHands LLM Setup
+1. Access http://localhost:3000
+2. Configure:
+   - For LocalAI: Use base URL above
+   - For OpenAI: Add your API key
+
+## 📝 Environment Variables
+
+Create `.env` file if needed:
+```env
+OPENAI_API_KEY=your_key_here
+ANTHROPIC_API_KEY=your_key_here
+LOCALAI_ENDPOINT=http://localhost:8080/v1
+```
+
+## 🚨 Troubleshooting
+
+### Port Already in Use
+```bash
+# Find process using port
+netstat -ano | findstr :3000
+
+# Kill process
+taskkill /PID <process_id> /F
+```
+
+### Docker Issues
+```bash
+# Reset Docker
 docker system prune -a
 
-# Remove unused models
-ollama rm unused_model
+# Rebuild containers
+setup_flowise.bat
+setup_openhands.bat
 ```
 
-### Issue: Slow inference
-- Reduce context size in model settings
-- Use smaller models (3B instead of 7B)
-- Enable GPU acceleration if available
+### Python Module Not Found
+```bash
+pip install memgpt pyautogen camel-ai openai requests flask
+```
 
-## 📊 Performance Tips
+## 📊 System Requirements
 
-1. **GPU Acceleration**: If you have an NVIDIA GPU, models will automatically use it
-2. **Memory Management**: Close unused applications to free RAM for models
-3. **Model Selection**: Start with smaller models (3B) and upgrade as needed
-4. **Batch Processing**: Use the orchestrator for efficient multi-model workflows
+- Python 3.9+ (3.11 recommended)
+- Docker Desktop
+- 8GB+ RAM
+- 10GB+ free disk space
+- Windows 10/11 or WSL2
 
-## 🔐 Security Notes
+## 🎯 Next Steps
 
-- All data stays on your local machine
-- No external API calls (except model downloads)
-- Secure random keys generated during setup
-- Services bound to localhost only
+1. Run `MASTER_CONTROL.bat`
+2. Start all services (Option 1)
+3. Open Flowise and import agent flow
+4. Configure LocalAI or API keys
+5. Test with sample prompts
+6. Build your AI applications!
 
-## 📈 Monitoring Your Deployment
+## 📚 Additional Resources
 
-1. Open Grafana at http://localhost:3003
-2. Login with admin/admin
-3. Import the LLMStack dashboard
-4. Monitor:
-   - Model inference latency
-   - Memory usage
-   - Request throughput
-   - Container health
+- [OpenHands Documentation](http://localhost:3000)
+- [Flowise Documentation](http://localhost:3001)
+- [LocalAI API Docs](http://localhost:8080/swagger)
 
-## 🚀 Next Steps
+---
 
-1. **Create Your First App**:
-   - Open LLMStack at http://localhost:3000
-   - Click "Create New App"
-   - Choose a template (RAG, Chatbot, etc.)
-   - Connect to Ollama models
-
-2. **Build a Workflow**:
-   - Open Flowise at http://localhost:3001
-   - Drag and drop components
-   - Connect to local models
-   - Test your workflow
-
-3. **Code with AI**:
-   - Use `aider` in terminal for coding help
-   - Open VS Code with Continue extension
-   - Let OpenHands build entire features
-
-## 💰 Cost Breakdown
-
-| Component | Cost | Note |
-|-----------|------|------|
-| Models | $0 | All open source |
-| API Calls | $0 | Everything local |
-| Infrastructure | $0 | Your hardware |
-| **Total** | **$0** | **100% Free** |
-
-## 📞 Support
-
-- Check logs: `docker logs container_name`
-- Validate deployment: Run script #6 from DEPLOY_ALL.ps1
-- GitHub Issues: Report to respective project repositories
-
-## 🎉 Congratulations!
-
-You now have a complete, production-ready AI agent stack running locally with:
-- Zero API costs
-- Complete data privacy
-- Multiple AI models
-- Professional monitoring
-- Scalable architecture
-
-Happy building! 🚀
+**Ready to build with AI! 🚀**
