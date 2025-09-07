@@ -1,5 +1,0 @@
-# MCP Integration Python Requirements
-mcp>=0.9.0
-aiohttp>=3.8.0
-asyncio
-logging

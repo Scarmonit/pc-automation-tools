@@ -1,0 +1,42 @@
+# LLMStack Open Source Deployment Requirements
+
+# Core Dependencies
+requests>=2.31.0
+httpx>=0.25.0
+aiohttp>=3.9.0
+
+# AI and ML
+openai>=1.0.0
+anthropic>=0.25.0
+
+# AutoGen Agent Framework
+pyautogen>=0.2.0
+autogen-agentchat
+
+# Aider Coding Assistant
+aider-chat
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Configuration and Environment
+python-dotenv>=1.0.0
+pyyaml>=6.0
+pydantic>=2.0.0
+
+# Utilities
+tqdm>=4.66.0
+rich>=13.7.0
+click>=8.1.0
+
+# JSON processing for scripts
+jq
+
+# Optional - Jupyter support
+jupyter
+ipywidgets
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
