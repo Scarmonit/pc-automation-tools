@@ -119,3 +119,37 @@ deployment/secrets/# Files with API keys
 api_key_analysis_report.json
 quick_security_demo.py
 system_capability_audit.py
+
+# Security - Sensitive files (DO NOT COMMIT)
+.env
+.env.local
+.env.production
+.env.*.local
+secrets/
+private_keys/
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+config/secrets.yaml
+config/production.yaml
+
+# Credentials and API keys
+**/api_keys.json
+**/credentials.json
+**/service-account*.json
+auth.json
+token.json
+
+# Database dumps and backups
+*.sql
+*.dump
+*.backup
+backups/
+
+# Logs that might contain sensitive data
+audit.log
+security.log
+access.log
+error.log

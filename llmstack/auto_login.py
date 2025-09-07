@@ -1,3 +1,9 @@
+
+# SECURITY WARNING: Credentials should be set via environment variables
+# Set LOGIN_EMAIL and LOGIN_PASSWORD environment variables before running
+# Example: export LOGIN_EMAIL="your-email@example.com"
+#          export LOGIN_PASSWORD="your-secure-password"
+import os
 #!/usr/bin/env python3
 """
 Automated login script
@@ -79,8 +85,8 @@ def auto_login(email, password, service_url):
         browser.close()
 
 # Your credentials
-email = "scarmonit@gmail.com"
-password = "VKUY%Ck0"
+email = os.getenv("LOGIN_EMAIL", "")
+password = os.getenv("LOGIN_PASSWORD", "")
 
 # Check which services might need login
 services = [
