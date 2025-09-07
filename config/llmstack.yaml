@@ -5,10 +5,10 @@ metadata:
 data:
   # LLMStack Configuration
   LLMSTACK_PORT: "3000"
-  LLMSTACK_SECRET_KEY: "your-secret-key-here"
+  LLMSTACK_SECRET_KEY: "${LLMSTACK_SECRET_KEY}"
   
   # Database Configuration
-  DATABASE_URL: "postgresql://postgres:password@postgres:5432/llmstack"
+  DATABASE_URL: "${DATABASE_URL}"
   
   # Redis Configuration
   REDIS_URL: "redis://redis:6379/0"
