@@ -1,0 +1,43 @@
+{
+  "system_info": {
+    "cpu_physical_cores": 32,
+    "cpu_logical_cores": 32,
+    "total_memory_gb": 63.72,
+    "available_memory_gb": 34.35,
+    "memory_usage_percent": 46.1,
+    "gpu_name": "NVIDIA GeForce RTX 4080",
+    "gpu_memory_mb": 16376,
+    "gpu_available": true
+  },
+  "worker_counts": {
+    "web_scraping_workers": 32,
+    "ai_processing_workers": 14,
+    "async_workers": 24,
+    "memory_intensive_concurrent": 6,
+    "db_connections": 20
+  },
+  "ollama_optimization": {
+    "num_thread": 30,
+    "num_gpu": 1,
+    "num_ctx": 3517,
+    "num_gqa": 8,
+    "num_batch": 512,
+    "low_vram": false,
+    "numa": true,
+    "mmap": true,
+    "env": {
+      "OMP_NUM_THREADS": "16",
+      "CUDA_VISIBLE_DEVICES": "0",
+      "OLLAMA_NUM_PARALLEL": "4",
+      "OLLAMA_MAX_LOADED_MODELS": "2",
+      "OLLAMA_FLASH_ATTENTION": "1",
+      "OLLAMA_GPU_OVERHEAD": "0.1"
+    }
+  },
+  "config_files_created": [
+    "configs\\ollama_config.json",
+    "configs\\scrapegraph_config.json",
+    "configs\\crawl4ai_config.json",
+    "configs\\chromadb_config.json"
+  ]
+}

@@ -1,0 +1,6 @@
+url,name,category,priority,expected_keys,notes
+https://api.github.com,GitHub API,development,HIGH,"github_pat,github_app",Popular development platform
+https://jsonplaceholder.typicode.com,JSON Placeholder,testing,LOW,,Testing API service
+https://httpbin.org,HTTPBin,testing,LOW,,HTTP testing service
+https://reqres.in,ReqRes,testing,MEDIUM,,REST API testing
+https://dog.ceo,Dog API,entertainment,LOW,,Public dog image API

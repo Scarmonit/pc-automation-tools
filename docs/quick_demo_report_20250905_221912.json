@@ -1,0 +1,38 @@
+{
+  "demo_timestamp": "2025-09-05T22:19:12.709986",
+  "pattern_scanner": {
+    "total_patterns": 51,
+    "test_findings": 2,
+    "categories": [
+      "cloud_provider",
+      "payment",
+      "communication",
+      "development",
+      "database",
+      "api_key",
+      "authentication",
+      "environment",
+      "certificate",
+      "social_media",
+      "analytics",
+      "infrastructure",
+      "encoded",
+      "url_credential",
+      "configuration"
+    ]
+  },
+  "web_scanner": {
+    "target_tested": "https://httpbin.org",
+    "pages_scanned": 3,
+    "findings_found": 378,
+    "scan_duration": 13.57315731048584
+  },
+  "capabilities_demonstrated": [
+    "100+ API key detection patterns",
+    "Web crawling and content analysis",
+    "JavaScript and CSS scanning",
+    "Risk level classification",
+    "Confidence scoring",
+    "Multi-target batch processing ready"
+  ]
+}

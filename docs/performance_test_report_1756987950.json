@@ -1,0 +1,14 @@
+{
+  "timestamp": 1756987950.1235986,
+  "results": {
+    "system": true,
+    "ollama": false,
+    "chromadb": true,
+    "crawl4ai": false
+  },
+  "system_info": {
+    "cpu_cores": 32,
+    "memory_gb": 64,
+    "gpu_available": true
+  }
+}

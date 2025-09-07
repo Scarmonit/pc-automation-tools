@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "persist_directory": "./chroma_db",
+    "anonymized_telemetry": false
+  },
+  "performance": {
+    "batch_size": 1000,
+    "max_connections": 20,
+    "query_threads": 8
+  }
+}
