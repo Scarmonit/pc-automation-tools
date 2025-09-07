@@ -566,7 +566,8 @@ async def log_request(model: str, processing_time: int):
     with open(log_file, "a") as f:
         f.write(f"{datetime.now().isoformat()} - Model: {model}, Time: {processing_time}ms\n")
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for the AI Platform"""
     # Setup logging
     logging.basicConfig(
         level=getattr(logging, config.log_level),
@@ -583,3 +584,7 @@ if __name__ == "__main__":
     
     # Run server
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+if __name__ == "__main__":
+    main()
