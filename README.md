@@ -111,6 +111,7 @@ bash scripts/setup_copilot_agents.sh
 
 ### Documentation
 - [Complete Copilot Agents Guide](docs/COPILOT_AGENTS_GUIDE.md)
+- [AI Agent Health Monitoring](docs/AI_AGENT_HEALTH_MONITORING.md)
 - [GitHub Copilot Configuration](.github/copilot.yml)
 - [VS Code Settings](.vscode/settings.json)
 
@@ -122,13 +123,14 @@ bash scripts/setup_copilot_agents.sh
 - **vLLM** - High-performance GPU inference
 
 ### AI Agents & Tools
-- **AutoGen** - Multi-agent conversations
+- **AutoGen** - Multi-agent conversations with enhanced health monitoring
 - **Flowise** - Visual AI workflow builder  
 - **OpenHands** - AI coding assistant
 - **Aider** - AI pair programming
 - **Continue** - VS Code AI extension
 - **Jan** - Desktop AI assistant
 - **GitHub Copilot** - Enhanced code completion with AI agent patterns
+- **Enhanced Health Monitoring** - Comprehensive agent status tracking and logging
 
 ## 🏗️ Architecture
 
