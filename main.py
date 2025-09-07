@@ -25,12 +25,13 @@ Available modules:
   database    - Database management
   monitoring  - Health monitoring and alerts
   integrations- Various service integrations
+  pc_tools    - PC automation and screenshot tools
         """
     )
     
     parser.add_argument('module', 
                        choices=['core', 'security', 'dolphin', 'automation', 
-                               'database', 'monitoring', 'integrations', 'list'],
+                               'database', 'monitoring', 'integrations', 'pc_tools', 'list'],
                        help='Module to run')
     
     parser.add_argument('--action', help='Specific action within module')
@@ -92,6 +93,17 @@ Available modules:
     elif args.module == 'integrations':
         print("Available Integrations:")
         list_integrations()
+    
+    elif args.module == 'pc_tools':
+        print("PC Tools Options:")
+        print("  - Screenshot capture")
+        print("  - System automation")
+        print("  - RunPod management")
+        if args.action == 'screenshot':
+            from pc_tools import screenshot
+            screenshot.main()
+        else:
+            print("\nUsage: python main.py pc_tools --action screenshot")
 
 
 def list_available_modules():
