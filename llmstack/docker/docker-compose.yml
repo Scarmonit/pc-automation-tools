@@ -1,0 +1,180 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: llmstack-postgres
+    environment:
+      POSTGRES_DB: llmstack
+      POSTGRES_USER: llmstack
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U llmstack"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: llmstack-redis
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ChromaDB Vector Database
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: llmstack-chroma
+    environment:
+      - CHROMA_SERVER_AUTH_PROVIDER=token
+      - CHROMA_SERVER_AUTH_TOKEN_TRANSPORT_HEADER=AUTHORIZATION
+      - CHROMA_SERVER_AUTH_CREDENTIALS=${CHROMA_TOKEN:-test-token}
+      - IS_PERSISTENT=TRUE
+    volumes:
+      - chroma_data:/chroma/chroma
+    ports:
+      - "8001:8000"
+    restart: unless-stopped
+
+  # LLMStack API
+  llmstack-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.llmstack
+    container_name: llmstack-api
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-changeme}
+      - DATABASE_URL=postgresql://llmstack:${DATABASE_PASSWORD:-changeme}@postgres:5432/llmstack
+      - REDIS_URL=redis://redis:6379
+      - CHROMA_URL=http://chroma:8000
+      - CHROMA_TOKEN=${CHROMA_TOKEN:-test-token}
+      - OPENAI_API_BASE=http://host.docker.internal:11434/v1
+      - OPENAI_API_KEY=ollama
+      - ENABLE_SIGNUP=false
+      - ENABLE_ANALYTICS=false
+      - DEFAULT_VECTOR_DB=chroma
+    volumes:
+      - ./data:/app/data
+      - ./configs:/app/configs
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      chroma:
+        condition: service_started
+    restart: unless-stopped
+
+  # Flowise - Visual Flow Builder
+  flowise:
+    image: flowiseai/flowise:latest
+    container_name: llmstack-flowise
+    environment:
+      - PORT=3000
+      - FLOWISE_USERNAME=${FLOWISE_USERNAME:-}
+      - FLOWISE_PASSWORD=${FLOWISE_PASSWORD:-}
+      - DATABASE_PATH=/root/.flowise
+      - APIKEY_PATH=/root/.flowise
+      - SECRETKEY_PATH=/root/.flowise
+      - LOG_PATH=/root/.flowise/logs
+    volumes:
+      - flowise_data:/root/.flowise
+    ports:
+      - "3001:3000"
+    restart: unless-stopped
+
+  # OpenHands - AI Developer
+  openhands:
+    image: ghcr.io/all-hands-ai/openhands:latest
+    container_name: llmstack-openhands
+    environment:
+      - WORKSPACE_DIR=/workspace
+      - LLM_API_BASE=http://host.docker.internal:11434/v1
+      - LLM_API_KEY=ollama
+      - LLM_MODEL=codellama:7b
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - openhands_workspace:/workspace
+    ports:
+      - "3002:3000"
+    restart: unless-stopped
+
+  # Prometheus Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: llmstack-prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.retention.time=7d'
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: llmstack-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_INSTALL_PLUGINS=redis-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/dashboards:/etc/grafana/provisioning/dashboards
+    ports:
+      - "3003:3000"
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy (optional)
+  nginx:
+    image: nginx:alpine
+    container_name: llmstack-nginx
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - llmstack-api
+      - flowise
+      - openhands
+    restart: unless-stopped
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+  redis_data:
+  chroma_data:
+  flowise_data:
+  openhands_workspace:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  default:
+    name: llmstack-network
+    driver: bridge
