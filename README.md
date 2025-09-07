@@ -91,28 +91,29 @@ bash scripts/validate_deployment.sh
 python3 scripts/benchmark_system.py
 ```
 
-## 🤖 GitHub Copilot Agents
+## 📚 Documentation
 
-GitHub Copilot has been configured with specialized knowledge for this repository's AI agent infrastructure.
+### 🎯 Quick Start Guides
+- **[AutoGen Multi-Agent Setup](docs/AUTOGEN_SETUP_GUIDE.md)** - Multi-agent conversations and collaboration
+- **[Aider AI Pair Programming](docs/AIDER_SETUP_GUIDE.md)** - AI-powered coding assistant
+- **[MemGPT Memory Agents](docs/MEMGPT_SETUP_GUIDE.md)** - Persistent memory AI agents
+- **[Flowise Visual Workflows](llmstack/FLOWISE_AGENT_SETUP.md)** - Visual AI workflow builder
+- **[OpenHands Coding Assistant](llmstack/OPENHANDS_SETUP_GUIDE.md)** - AI coding and project management
 
-### Quick Setup
-```bash
-# Setup Copilot agents integration
-bash scripts/setup_copilot_agents.sh
+### 🛠️ Operations & Monitoring
+- **[Monitoring & Observability](docs/MONITORING_SETUP_GUIDE.md)** - Prometheus, Grafana, and metrics
+- **[Troubleshooting Guide](docs/TROUBLESHOOTING_GUIDE.md)** - Comprehensive problem resolution
 
-# Restart VS Code to apply settings
-```
+### 🤖 GitHub Copilot Integration
+- **[Copilot Agents Guide](docs/COPILOT_AGENTS_GUIDE.md)** - Repository-aware code completion
+- **Quick Setup**: `bash scripts/setup_copilot_agents.sh`
 
-### Features
-- **AI Agent Patterns**: Code completion tailored for AutoGen, Flowise, and other agents
-- **Docker Integration**: Smart suggestions for service deployment
-- **Configuration Help**: Auto-completion for AI model configurations
-- **Best Practices**: Automatically suggests error handling and logging patterns
-
-### Documentation
-- [Complete Copilot Agents Guide](docs/COPILOT_AGENTS_GUIDE.md)
-- [GitHub Copilot Configuration](.github/copilot.yml)
-- [VS Code Settings](.vscode/settings.json)
+### 📝 Examples & Tutorials
+- **[Ollama Chat Examples](llmstack/examples/01_ollama_chat.md)**
+- **[Flowise Workflows](llmstack/examples/02_flowise_workflows.md)**
+- **[Aider Coding Sessions](llmstack/examples/03_aider_coding.md)**
+- **[AutoGen Agent Scripts](llmstack/examples/04_autogen_agents.py)**
+- **[Monitoring Setup](llmstack/examples/05_monitoring.md)**
 
 ## 🧠 Available AI Components
 
