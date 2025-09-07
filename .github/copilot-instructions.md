@@ -239,7 +239,7 @@ Complete deployment system for LLMStack with 100% free and open source AI compon
 
 ### Main Components
 - **LLMStack**: Web UI for AI app development
-- **Ollama**: Local model inference (Llama, Mistral, CodeLlama)
+- **Ollama**: Local model inference (Llama, Mistral, Code Llama)
 - **AutoGen**: Multi-agent conversations
 - **Flowise**: Visual AI workflow builder
 - **OpenHands**: AI coding assistant
