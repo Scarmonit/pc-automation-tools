@@ -10,7 +10,7 @@ from unittest.mock import patch, MagicMock
 from pathlib import Path
 
 # Import our modules
-from github_automation import GitHubAPI, BugReport, AutoSubmitter
+from github_automation import GitHubAPI, BugReport, AutoSubmitter, ReviewRequest
 from merge_automation import MergeAutomation
 
 
@@ -75,6 +75,56 @@ class TestGitHubAPI(unittest.TestCase):
         
         self.assertEqual(issue['number'], 123)
         self.assertEqual(issue['title'], 'Test Bug')
+    
+    def test_review_request_creation(self):
+        """Test ReviewRequest dataclass"""
+        review = ReviewRequest(
+            pr_number=42,
+            event="APPROVE",
+            body="Looks good!",
+            comments=[{"line": 10, "body": "Nice code"}]
+        )
+        
+        self.assertEqual(review.pr_number, 42)
+        self.assertEqual(review.event, "APPROVE")
+        self.assertEqual(len(review.comments), 1)
+    
+    @patch('requests.request')
+    def test_get_open_pull_requests(self, mock_request):
+        """Test getting open pull requests"""
+        mock_response = MagicMock()
+        mock_response.json.return_value = [
+            {'number': 1, 'title': 'Test PR', 'state': 'open'},
+            {'number': 2, 'title': 'Another PR', 'state': 'open'}
+        ]
+        mock_response.content = True
+        mock_response.raise_for_status.return_value = None
+        mock_request.return_value = mock_response
+        
+        prs = self.api.get_open_pull_requests()
+        
+        self.assertEqual(len(prs), 2)
+        self.assertEqual(prs[0]['number'], 1)
+    
+    @patch('requests.request')
+    def test_submit_review(self, mock_request):
+        """Test submitting a review"""
+        mock_response = MagicMock()
+        mock_response.json.return_value = {'id': 123, 'state': 'APPROVED'}
+        mock_response.content = True
+        mock_response.raise_for_status.return_value = None
+        mock_request.return_value = mock_response
+        
+        review = ReviewRequest(
+            pr_number=42,
+            event="APPROVE",
+            body="Automated approval"
+        )
+        
+        result = self.api.submit_review(review)
+        
+        self.assertEqual(result['id'], 123)
+        self.assertEqual(result['state'], 'APPROVED')
 
 
 class TestAutoSubmitter(unittest.TestCase):
@@ -154,6 +204,28 @@ class TestAutoSubmitter(unittest.TestCase):
             
         finally:
             os.unlink(report_file)
+    
+    @patch.object(AutoSubmitter, '_analyze_pull_request')
+    @patch.object(GitHubAPI, 'get_open_pull_requests')
+    def test_submit_automated_reviews(self, mock_get_prs, mock_analyze):
+        """Test automated review submission"""
+        # Mock pull requests
+        mock_get_prs.return_value = [
+            {'number': 1, 'title': 'Feature update', 'draft': False},
+            {'number': 2, 'title': 'Auto-generated fix', 'draft': False}  # Should be skipped
+        ]
+        
+        # Mock analysis - return review for first PR, None for second  
+        mock_analyze.side_effect = [
+            ReviewRequest(pr_number=1, event='APPROVE', body='Looks good'),
+            None  # Skip automated PR
+        ]
+        
+        reviews = self.submitter.submit_automated_reviews()
+        
+        # Should have analyzed both PRs but only processed one (non-automated)
+        self.assertEqual(mock_analyze.call_count, 1)  # Only non-automated PR analyzed
+        self.assertEqual(len(reviews), 0)  # Dry run mode, no actual submissions
 
 
 class TestMergeAutomation(unittest.TestCase):
