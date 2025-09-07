@@ -1,0 +1,10 @@
+# .github/copilot.yml
+# Configuration for GitHub Copilot
+version: 1
+features:
+  completion:
+    enabled: true
+  autoSuggestions:
+    enabled: true
+  inlineSuggestions:
+    enabled: true
