@@ -235,7 +235,7 @@ bash scripts/check_system.sh
 ## Key Project Information
 
 ### Project Purpose
-Complete deployment system for LLMStack with 100% free/open source AI components. Provides local AI development environment with zero API costs and full data privacy.
+Complete deployment system for LLMStack with 100% free and open source AI components. Provides local AI development environment with zero API costs and full data privacy.
 
 ### Main Components
 - **LLMStack**: Web UI for AI app development
