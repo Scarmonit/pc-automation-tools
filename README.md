@@ -233,6 +233,20 @@ bash apps/code_pipeline.sh "my-app" "Create a FastAPI web service"
 # RAG chatbot configuration available in apps/rag_chatbot.json
 ```
 
+## 🐛 Reporting Issues
+
+Found a bug or have a suggestion? We use structured issue templates to help us understand and address your concerns quickly:
+
+- **🐛 [Bug Report](https://github.com/Scarmonit/pc-automation-tools/issues/new?template=bug_report.yml)** - Report bugs or problems
+- **✨ [Feature Request](https://github.com/Scarmonit/pc-automation-tools/issues/new?template=feature_request.yml)** - Suggest new features
+- **❓ [Question/Support](https://github.com/Scarmonit/pc-automation-tools/issues/new?template=question.yml)** - Get help or ask questions  
+- **📝 [Documentation](https://github.com/Scarmonit/pc-automation-tools/issues/new?template=documentation.yml)** - Improve documentation
+
+Before reporting an issue, please:
+1. Check existing issues and documentation
+2. Run `bash validate.sh` to check your system
+3. Try `bash scripts/troubleshoot.sh` for automated fixes
+
 ## 🤝 Contributing
 
 1. Fork the repository

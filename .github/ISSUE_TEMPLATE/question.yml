@@ -1,0 +1,90 @@
+name: Question / Support
+description: Ask a question or get help with the LLMStack deployment tools
+title: "[QUESTION] "
+labels: ["help wanted"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Need help with LLMStack deployment? Please provide as much detail as possible so we can assist you effectively.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What type of help do you need?
+      options:
+        - Installation / Setup
+        - Configuration
+        - Deployment Issues
+        - Performance Optimization
+        - AI Model Integration
+        - Troubleshooting
+        - Usage / How-to
+        - Best Practices
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please describe your question or what you're trying to achieve.
+      placeholder: What specific help do you need? What are you trying to accomplish?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and Background
+      description: Provide any relevant context about your setup or what you've tried.
+      placeholder: |
+        - What components are you using?
+        - What have you already tried?
+        - What documentation have you consulted?
+
+  - type: textarea
+    id: current_setup
+    attributes:
+      label: Current Setup
+      description: Describe your current environment and configuration.
+      value: |
+        - OS: [e.g., Ubuntu 22.04, Windows 11, macOS 13]
+        - RAM: [e.g., 16GB]
+        - GPU: [e.g., NVIDIA RTX 3080, None]
+        - Components installed: [e.g., Ollama, LLMStack, Flowise]
+        - Models in use: [e.g., llama3.2:3b, mistral:7b]
+
+  - type: textarea
+    id: error_output
+    attributes:
+      label: Error Messages or Logs (if applicable)
+      description: If you're encountering errors, please include the relevant output.
+      placeholder: |
+        Paste any error messages, logs, or command output here.
+        Use ```bash for command output or ```python for Python errors.
+
+  - type: textarea
+    id: expected_outcome
+    attributes:
+      label: Expected Outcome
+      description: What would you like to achieve or what result are you expecting?
+      placeholder: Describe what you're trying to accomplish or what outcome you expect.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you've done the following before asking for help.
+      options:
+        - label: I have read the README.md and relevant documentation
+          required: true
+        - label: I have searched for existing issues and discussions
+          required: true
+        - label: I have run `bash validate.sh` to check my system status
+          required: false
+        - label: I have tried the troubleshooting script `bash scripts/troubleshoot.sh`
+          required: false

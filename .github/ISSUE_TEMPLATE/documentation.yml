@@ -1,0 +1,108 @@
+name: Documentation Improvement
+description: Suggest improvements to documentation, guides, or examples
+title: "[DOCS] "
+labels: ["documentation"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve our documentation! Your feedback makes the project more accessible to everyone.
+
+  - type: dropdown
+    id: doc_type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation needs improvement?
+      options:
+        - README.md
+        - Installation Guide
+        - Configuration Guide
+        - Troubleshooting Guide
+        - API Documentation
+        - Code Examples
+        - Tutorial/Walkthrough
+        - Comments in Code
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Document Location
+      description: Which file or section needs improvement?
+      placeholder: e.g., README.md line 45-60, llmstack/examples/01_basic_setup.md, etc.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: What kind of improvement is needed?
+      options:
+        - Missing Information
+        - Incorrect Information
+        - Outdated Information
+        - Unclear Instructions
+        - Missing Examples
+        - Typos/Grammar
+        - Better Organization
+        - New Section Needed
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_content
+    attributes:
+      label: Current Content (if applicable)
+      description: Quote or describe the current content that needs improvement.
+      placeholder: |
+        Copy the current text that needs to be improved, or describe what's currently there.
+
+  - type: textarea
+    id: suggested_improvement
+    attributes:
+      label: Suggested Improvement
+      description: Describe how the documentation should be improved.
+      placeholder: |
+        - What information should be added, removed, or changed?
+        - How could the instructions be made clearer?
+        - What examples would be helpful?
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_impact
+    attributes:
+      label: User Impact
+      description: How does this documentation issue affect users?
+      placeholder: |
+        - What problems does this cause for users?
+        - Who would benefit from this improvement?
+        - How does it affect the user experience?
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information about this documentation improvement.
+      placeholder: |
+        - Links to related issues or discussions
+        - Screenshots of confusing sections
+        - Examples from other projects
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help improve the documentation?
+      options:
+        - label: I am willing to submit a pull request with the suggested changes
+          required: false
+        - label: I can provide additional examples or content
+          required: false
+        - label: I can help review and test the improved documentation
+          required: false

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/Scarmonit/pc-automation-tools/blob/main/README.md
+    about: Read the main documentation and setup guides
+  - name: 🔧 Troubleshooting
+    url: https://github.com/Scarmonit/pc-automation-tools/blob/main/scripts/troubleshoot.sh
+    about: Run the interactive troubleshooting tool for common issues
+  - name: 💬 Discussions
+    url: https://github.com/Scarmonit/pc-automation-tools/discussions
+    about: Ask questions and discuss ideas with the community
