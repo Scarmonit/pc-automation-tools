@@ -105,15 +105,13 @@ SUPREME RESPONSE:
             "Develop a comprehensive security framework for cloud-native applications"
         ]
         
-        print("
-" + "="*60)
+        print("\n" + "="*60)
         print("DOLPHIN-SUPREME INTELLIGENCE BENCHMARK")
         print("="*60)
         
         total_time = 0
         for i, query in enumerate(test_queries, 1):
-            print(f"
-[TEST {i}/4] {query[:50]}...")
+            print(f"\n[TEST {i}/4] {query[:50]}...")
             response, time_taken = self.enhanced_query(query)
             total_time += time_taken
             
@@ -121,8 +119,7 @@ SUPREME RESPONSE:
             response_length = len(response)
             has_code = "```" in response or "def " in response or "class " in response
             has_architecture = any(word in response.lower() for word in ["architecture", "design", "pattern", "structure"])
-            has_details = len(response.split('
-')) > 20
+            has_details = len(response.split('\n')) > 20
             
             print(f"  [+] Response time: {time_taken:.1f}s")
             print(f"  [+] Response length: {response_length:,} chars")
@@ -131,8 +128,7 @@ SUPREME RESPONSE:
             print(f"  [+] Detailed analysis: {has_details}")
         
         avg_time = total_time / len(test_queries)
-        print(f"
-[BENCHMARK COMPLETE]")
+        print(f"\n[BENCHMARK COMPLETE]")
         print(f"Average response time: {avg_time:.1f}s")
         print(f"Total processing time: {total_time:.1f}s")
         
@@ -142,16 +138,14 @@ SUPREME RESPONSE:
         print("DOLPHIN-SUPREME INTERACTIVE INTERFACE")
         print("="*60)
         
-        print("
-Modes available:")
+        print("\nModes available:")
         print("1. Supreme Analysis (default)")
         print("2. Multi-Perspective Analysis")
         print("3. Performance Benchmark")
         print("4. Session Analysis")
         
         while True:
-            print("
-" + "="*60)
+            print("\n" + "="*60)
             query = input("Enter your query (or 'quit'): ")
             
             if query.lower() in ['quit', 'exit']:
@@ -160,12 +154,10 @@ Modes available:")
             mode_choice = input("Select mode (1-4, default=1): ").strip()
             
             if mode_choice == "2":
-                print("
-[*] Analyzing from multiple expert perspectives...")
+                print("\n[*] Analyzing from multiple expert perspectives...")
                 results = self.multi_perspective_analysis(query)
                 for result in results:
-                    print(f"
---- {result['perspective']} ---")
+                    print(f"\n--- {result['perspective']} ---")
                     print(result['analysis'][:1000] + "..." if len(result['analysis']) > 1000 else result['analysis'])
                     print(f"Response time: {result['time']:.1f}s")
             
@@ -173,20 +165,17 @@ Modes available:")
                 self.benchmark_intelligence()
             
             elif mode_choice == "4":
-                print(f"
-Session Statistics:")
+                print(f"\nSession Statistics:")
                 print(f"Total queries: {len(self.session_data)}")
                 if self.performance_metrics:
                     avg_time = sum(m['response_time'] for m in self.performance_metrics.values()) / len(self.performance_metrics)
                     print(f"Average response time: {avg_time:.1f}s")
             
             else:  # Default supreme mode
-                print("
-[*] Processing with supreme intelligence...")
+                print("\n[*] Processing with supreme intelligence...")
                 response, time_taken = self.enhanced_query(query, "supreme")
                 print(response)
-                print(f"
-Response time: {time_taken:.1f}s")
+                print(f"\nResponse time: {time_taken:.1f}s")
 
 
 if __name__ == "__main__":
