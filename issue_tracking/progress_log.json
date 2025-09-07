@@ -1,0 +1,10 @@
+[
+  {
+    "timestamp": "2025-09-07T19:45:13.552896",
+    "issue_id": "SEC-HIGH-001",
+    "old_status": "Status.OPEN",
+    "new_status": "in_progress",
+    "notes": "Test update for demonstration",
+    "updated_by": "system"
+  }
+]
