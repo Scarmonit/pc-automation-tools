@@ -1,6 +1,6 @@
 # Copilot Instructions for LLMStack Open Source Deployment
 
-**CRITICAL**: Always follow these instructions first and only fallback to additional search or bash commands if the information here is incomplete or found to be in error.
+**CRITICAL**: Always follow these instructions first and only fall back to additional search or bash commands if the information here is incomplete or found to be in error.
 
 ## Working Effectively
 
