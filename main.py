@@ -100,7 +100,7 @@ Available modules:
         print("  - System automation")
         print("  - RunPod management")
         if args.action == 'screenshot':
-            from pc_tools import screenshot
+            from src.pc_tools import screenshot
             screenshot.main()
         else:
             print("\nUsage: python main.py pc_tools --action screenshot")
