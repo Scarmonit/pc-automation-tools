@@ -1,12 +1,18 @@
 #!/bin/bash
+set -e  # Exit on any error
+
 # Setup vLLM Docker container
 
 echo "Setting up vLLM..."
 
 # Create vLLM configuration directory
-mkdir -p ~/llmstack/vllm
+mkdir -p ~/llmstack/vllm || {
+    echo "ERROR: Failed to create vLLM directory"
+    exit 1
+}
 
 # Create vLLM docker-compose configuration
+echo "Creating vLLM configuration..."
 cat > ~/llmstack/vllm/docker-compose.yml << 'EOF'
 version: '3.8'
 services:

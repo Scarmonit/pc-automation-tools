@@ -1,14 +1,35 @@
 #!/bin/bash
+set -e  # Exit on any error
+
 # Set working directory
 export LLMSTACK_HOME="$HOME/llmstack"
-mkdir -p "$LLMSTACK_HOME"
-cd "$LLMSTACK_HOME"
+echo "Setting up LLMStack in: $LLMSTACK_HOME"
 
-# Clone LLMStack
-git clone https://github.com/trypromptly/LLMStack.git
-cd LLMStack
+# Create directory and navigate
+mkdir -p "$LLMSTACK_HOME"
+cd "$LLMSTACK_HOME" || {
+    echo "ERROR: Failed to navigate to $LLMSTACK_HOME"
+    exit 1
+}
+
+# Clone LLMStack if not already present
+if [ ! -d "LLMStack" ]; then
+    echo "Cloning LLMStack repository..."
+    git clone https://github.com/trypromptly/LLMStack.git
+else
+    echo "LLMStack directory already exists, skipping clone"
+fi
+
+cd LLMStack || {
+    echo "ERROR: Failed to navigate to LLMStack directory"
+    exit 1
+}
+
+# Create docker directory if it doesn't exist
+mkdir -p docker
 
 # Create production configuration
+echo "Creating production configuration..."
 cat > docker/.env.production << 'EOF'
 # Security
 SECRET_KEY=$(openssl rand -base64 32)

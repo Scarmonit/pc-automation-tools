@@ -1,13 +1,29 @@
 #!/bin/bash
+set -e  # Exit on any error
+
 # Install Ollama (primary local model server)
+echo "Installing Ollama..."
 curl -fsSL https://ollama.com/install.sh | sh
 
 # Verify installation
-ollama --version || exit 1
+echo "Verifying Ollama installation..."
+ollama --version || {
+    echo "ERROR: Ollama installation failed"
+    exit 1
+}
 
-# Start Ollama service
-sudo systemctl enable ollama
-sudo systemctl start ollama
+# Start Ollama service (check if systemd is available)
+if command -v systemctl >/dev/null 2>&1; then
+    echo "Starting Ollama service..."
+    sudo systemctl enable ollama
+    sudo systemctl start ollama
+else
+    echo "WARNING: systemctl not available, starting Ollama manually..."
+    ollama serve &
+    sleep 5
+fi
+
+echo "✓ Ollama installation completed successfully"
 
 # Download essential models
 ollama pull llama3.2:3b        # 2GB - Fast general purpose

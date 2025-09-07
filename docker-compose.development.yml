@@ -7,7 +7,7 @@ services:
       - "3000:3000"
     environment:
       - LLMSTACK_PORT=3000
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/llmstack
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD:-secure_password_change_me}@postgres:5432/llmstack
       - REDIS_URL=redis://redis:6379/0
       - OLLAMA_BASE_URL=http://host.docker.internal:11434
       - DEBUG=true
