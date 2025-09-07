@@ -55,10 +55,10 @@ Available modules:
         print("  - Deep Crawl Engine")
         print("  - Stealth Scanner")
         if args.action == 'webscan':
-            from security import ultimate_security_scanner
+            from src.security import ultimate_security_scanner
             ultimate_security_scanner.main()
         elif args.action == 'apiscan':
-            from security import web_api_scanner
+            from src.security import web_api_scanner
             web_api_scanner.main()
     
     elif args.module == 'dolphin':
@@ -67,10 +67,10 @@ Available modules:
         print("  - Enhance Model")
         print("  - Launch GUI")
         if args.action == 'setup':
-            from dolphin import setup_ollama_dolphin
+            from src.dolphin import setup_ollama_dolphin
             setup_ollama_dolphin.main()
         elif args.action == 'gui':
-            from dolphin import dolphin_gui
+            from src.dolphin import dolphin_gui
             dolphin_gui.main()
     
     elif args.module == 'automation':
@@ -79,15 +79,15 @@ Available modules:
         print("  - AutoGPT Integration")
         print("  - Distributed Agents")
         if args.action == 'swarm':
-            from automation import master_ai_swarm_intelligence
+            from src.automation import master_ai_swarm_intelligence
             master_ai_swarm_intelligence.main()
     
     elif args.module == 'database':
-        from database import unified_database_system
+        from src.database import unified_database_system
         unified_database_system.main()
     
     elif args.module == 'monitoring':
-        from monitoring import health_monitor
+        from src.monitoring import health_monitor
         health_monitor.main()
     
     elif args.module == 'integrations':
