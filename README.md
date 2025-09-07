@@ -17,14 +17,14 @@ Deploy LLMStack with local AI models (Ollama, LM Studio, vLLM) and free AI agent
 
 ## 🤖 Auto Submit Functionality
 
-NEW: Automated bug reporting and merge request creation based on audit findings.
+NEW: Automated bug reporting, merge request creation, and code review submission based on audit findings.
 
 ### Quick Auto Submit
 ```bash
 # Set GitHub token
 export GITHUB_TOKEN=your_github_token
 
-# Run full automation (audits + bug reports + merge requests)
+# Run full automation (audits + bug reports + merge requests + reviews)
 ./auto_submit.sh auto
 
 # Or preview what would be done
@@ -34,13 +34,19 @@ export GITHUB_TOKEN=your_github_token
 ### Auto Submit Options
 ```bash
 # Submit bugs from audit findings
-python3 auto_submit.py bugs --type all
+python3 github_automation.py --action bugs
 
-# Create merge requests for fixes
-python3 auto_submit.py merges --type shell
+# Submit security issues from audit findings
+python3 github_automation.py --action security
 
-# Full automation workflow
-python3 auto_submit.py auto
+# Submit automated code reviews on open PRs
+python3 github_automation.py --action reviews
+
+# Run complete automation workflow
+python3 github_automation.py --action all
+
+# Preview actions without executing (dry-run mode)
+python3 github_automation.py --action all --dry-run
 ```
 
 See [AUTO_SUBMIT_README.md](AUTO_SUBMIT_README.md) for detailed documentation.
