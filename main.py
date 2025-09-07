@@ -100,8 +100,10 @@ Available modules:
         print("  - System automation")
         print("  - RunPod management")
         if args.action == 'screenshot':
-            from src.pc_tools import screenshot
-            screenshot.main()
+            from src.pc_tools.screenshot import ScreenshotManager
+            manager = ScreenshotManager()
+            path = manager.take_screenshot()
+            print(f"[OK] Screenshot saved: {path}")
         else:
             print("\nUsage: python main.py pc_tools --action screenshot")
 
