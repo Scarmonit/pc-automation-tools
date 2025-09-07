@@ -153,3 +153,12 @@ audit.log
 security.log
 access.log
 error.log
+
+# Audit and cleanup files (generated, not for version control)
+*audit_report*.md
+*AUDIT_REPORT*.md
+*CLEANUP_*.md
+*_audit.py
+audit_output/
+cleanup_logs/
+verification_results.txt
