@@ -76,6 +76,7 @@ bash scripts/deploy_llmstack.sh
 bash scripts/install_agents.sh
 bash scripts/install_continue.sh
 bash scripts/install_jan.sh
+bash scripts/setup_copilot_agents.sh
 ```
 
 #### Phase 5: Setup Monitoring & Optimization
@@ -89,6 +90,29 @@ bash scripts/optimize_system.sh
 bash scripts/validate_deployment.sh
 python3 scripts/benchmark_system.py
 ```
+
+## 🤖 GitHub Copilot Agents
+
+GitHub Copilot has been configured with specialized knowledge for this repository's AI agent infrastructure.
+
+### Quick Setup
+```bash
+# Setup Copilot agents integration
+bash scripts/setup_copilot_agents.sh
+
+# Restart VS Code to apply settings
+```
+
+### Features
+- **AI Agent Patterns**: Code completion tailored for AutoGen, Flowise, and other agents
+- **Docker Integration**: Smart suggestions for service deployment
+- **Configuration Help**: Auto-completion for AI model configurations
+- **Best Practices**: Automatically suggests error handling and logging patterns
+
+### Documentation
+- [Complete Copilot Agents Guide](docs/COPILOT_AGENTS_GUIDE.md)
+- [GitHub Copilot Configuration](.github/copilot.yml)
+- [VS Code Settings](.vscode/settings.json)
 
 ## 🧠 Available AI Components
 
@@ -104,6 +128,7 @@ python3 scripts/benchmark_system.py
 - **Aider** - AI pair programming
 - **Continue** - VS Code AI extension
 - **Jan** - Desktop AI assistant
+- **GitHub Copilot** - Enhanced code completion with AI agent patterns
 
 ## 🏗️ Architecture
 
@@ -139,6 +164,7 @@ python3 scripts/benchmark_system.py
 │   ├── install_agents.sh     # AI agents installation
 │   ├── install_continue.sh   # VS Code Continue extension
 │   ├── install_jan.sh        # Jan desktop app
+│   ├── setup_copilot_agents.sh # GitHub Copilot agents setup
 │   ├── configure_providers.py # Provider configuration
 │   ├── setup_monitoring.sh   # Monitoring stack
 │   ├── optimize_system.sh    # System optimization

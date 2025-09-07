@@ -1,10 +1,120 @@
 # .github/copilot.yml
-# Configuration for GitHub Copilot
+# Configuration for GitHub Copilot for PC Automation Tools
 version: 1
+
+# Enable core Copilot features
 features:
   completion:
     enabled: true
+    # Enhanced completion for AI agent development
+    suggestions:
+      enabled: true
+      max_suggestions: 5
+      include_comments: true
+  
   autoSuggestions:
     enabled: true
+    # Auto-suggestions for agent configurations and workflows
+    triggers:
+      - "agent"
+      - "orchestrator" 
+      - "config"
+      - "llm_config"
+      - "docker run"
+  
   inlineSuggestions:
     enabled: true
+    # Context-aware suggestions for the AI stack
+    context_aware: true
+
+# Language-specific configurations
+languages:
+  python:
+    # Enhanced Python support for AI agents
+    completion:
+      enabled: true
+      include_type_hints: true
+      suggest_imports: true
+      # Prioritize AI/ML imports
+      preferred_imports:
+        - "from autogen import AssistantAgent, UserProxyAgent"
+        - "from openai import OpenAI"
+        - "import asyncio"
+        - "from dataclasses import dataclass"
+  
+  shell:
+    # Shell script support for automation
+    completion:
+      enabled: true
+      suggest_flags: true
+      include_error_handling: true
+  
+  dockerfile:
+    # Docker configuration support
+    completion:
+      enabled: true
+      suggest_best_practices: true
+
+# Repository-specific settings
+repository:
+  # AI agent development focus
+  domain: "ai_automation"
+  
+  # Key file patterns to prioritize
+  important_files:
+    - "llmstack/**/*.py"
+    - "scripts/**/*.sh" 
+    - "**/config*.json"
+    - "**/docker-compose*.yml"
+  
+  # Common code patterns for this repo
+  patterns:
+    - name: "agent_config"
+      description: "AI agent configuration pattern"
+      template: |
+        @dataclass
+        class AIConfig:
+            model_name: str = "llama3.2"
+            base_url: str = "http://localhost:11434/v1"
+            api_key: str = "ollama"
+            temperature: float = 0.7
+    
+    - name: "docker_service"
+      description: "Docker service deployment pattern"
+      template: |
+        docker run -d \
+          --name ${service_name} \
+          -p ${host_port}:${container_port} \
+          -v ${volume_path}:/app/data \
+          --restart unless-stopped \
+          ${image_name}
+    
+    - name: "autogen_agent"
+      description: "AutoGen agent creation pattern"
+      template: |
+        agent = AssistantAgent(
+            name="${agent_name}",
+            llm_config=llm_config,
+            system_message="${system_message}"
+        )
+
+# Workflow suggestions
+workflows:
+  - name: "agent_development"
+    description: "AI agent development workflow"
+    steps:
+      - "Create agent configuration"
+      - "Implement agent class"
+      - "Add to unified orchestrator"
+      - "Create installation script"
+      - "Add documentation"
+      - "Include tests"
+  
+  - name: "service_deployment"
+    description: "Service deployment workflow"
+    steps:
+      - "Create Docker configuration"
+      - "Add service startup script"
+      - "Include health checks"
+      - "Add monitoring"
+      - "Document usage"

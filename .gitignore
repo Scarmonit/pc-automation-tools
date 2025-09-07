@@ -162,3 +162,6 @@ error.log
 audit_output/
 cleanup_logs/
 verification_results.txt
+
+# GitHub Copilot cache
+.copilot/
