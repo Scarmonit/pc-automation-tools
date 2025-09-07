@@ -1,0 +1,22 @@
+{
+  "models": [
+    {
+      "title": "Ollama - Llama 3.2",
+      "provider": "ollama",
+      "model": "llama3.2:3b",
+      "apiBase": "http://localhost:11434"
+    },
+    {
+      "title": "Ollama - CodeLlama",
+      "provider": "ollama",
+      "model": "codellama:7b",
+      "apiBase": "http://localhost:11434"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Starcoder",
+    "provider": "ollama",
+    "model": "starcoder2:3b",
+    "apiBase": "http://localhost:11434"
+  }
+}

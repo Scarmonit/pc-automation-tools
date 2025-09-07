@@ -4,50 +4,76 @@ Complete deployment guide and scripts for running LLMStack with 100% free and op
 
 ## 🎯 Purpose
 
-Deploy LLMStack with local AI models (Ollama, LM Studio) and free AI agents (AutoGen, Flowise, OpenHands, Aider) for a completely self-hosted AI development environment.
+Deploy LLMStack with local AI models (Ollama, LM Studio, vLLM) and free AI agents (AutoGen, Flowise, OpenHands, Aider) for a completely self-hosted AI development environment with comprehensive monitoring, optimization, and production applications.
 
 ## 📋 System Requirements
 
 - **CPU:** 4+ cores recommended
-- **RAM:** 8GB+ (16GB recommended)
+- **RAM:** 8GB+ (16GB recommended)  
 - **Storage:** 50GB+ free disk space
 - **GPU:** Optional but recommended (4GB+ VRAM)
 - **OS:** Linux, macOS, or Windows with WSL2
+- **Docker:** Required for containerized services
 
 ## 🚀 Quick Start
 
-### Phase 1: System Check
+### One-Command Deployment
+```bash
+bash deploy.sh
+```
+
+### Manual Step-by-Step Deployment
+
+#### Phase 1: System Check
 ```bash
 bash scripts/check_system.sh
 ```
 
-### Phase 2: Install Local Model Server
+#### Phase 2: Install Local Model Servers
 ```bash
 bash scripts/install_ollama.sh
+bash scripts/install_lm_studio.sh
+bash scripts/setup_vllm.sh
 ```
 
-### Phase 3: Deploy LLMStack
+#### Phase 3: Deploy LLMStack
 ```bash
 bash scripts/deploy_llmstack.sh
 ```
 
-### Phase 4: Install AI Agents
+#### Phase 4: Install AI Agents
 ```bash
 bash scripts/install_agents.sh
+bash scripts/install_continue.sh
+bash scripts/install_jan.sh
 ```
 
-### Phase 5: Validate Deployment
+#### Phase 5: Setup Monitoring & Optimization
+```bash
+bash scripts/setup_monitoring.sh
+bash scripts/optimize_system.sh
+```
+
+#### Phase 6: Validate & Benchmark
 ```bash
 bash scripts/validate_deployment.sh
+python3 scripts/benchmark_system.py
 ```
 
-## 🧠 Available AI Agents
+## 🧠 Available AI Components
 
+### Local Model Servers
 - **Ollama** - Local model inference (Llama, Mistral, CodeLlama)
+- **LM Studio** - User-friendly model management
+- **vLLM** - High-performance GPU inference
+
+### AI Agents & Tools
 - **AutoGen** - Multi-agent conversations
-- **Flowise** - Visual AI workflow builder
+- **Flowise** - Visual AI workflow builder  
 - **OpenHands** - AI coding assistant
 - **Aider** - AI pair programming
+- **Continue** - VS Code AI extension
+- **Jan** - Desktop AI assistant
 
 ## 🏗️ Architecture
 
@@ -73,17 +99,31 @@ bash scripts/validate_deployment.sh
 
 ```
 .
-├── scripts/                    # Deployment scripts
-│   ├── check_system.sh        # System requirements check
-│   ├── install_ollama.sh      # Ollama installation
-│   ├── deploy_llmstack.sh     # LLMStack deployment
-│   ├── install_agents.sh      # AI agents installation
+├── deploy.sh                  # One-command deployment
+├── scripts/                   # Deployment scripts
+│   ├── check_system.sh       # System requirements check
+│   ├── install_ollama.sh     # Ollama installation
+│   ├── install_lm_studio.sh  # LM Studio installation
+│   ├── setup_vllm.sh         # vLLM setup
+│   ├── deploy_llmstack.sh    # LLMStack deployment
+│   ├── install_agents.sh     # AI agents installation
+│   ├── install_continue.sh   # VS Code Continue extension
+│   ├── install_jan.sh        # Jan desktop app
+│   ├── configure_providers.py # Provider configuration
+│   ├── setup_monitoring.sh   # Monitoring stack
+│   ├── optimize_system.sh    # System optimization
+│   ├── benchmark_system.py   # Performance benchmarking
+│   ├── manage_services.sh    # Service management
+│   ├── troubleshoot.sh       # Troubleshooting tool
 │   ├── validate_deployment.sh # Deployment validation
-│   └── orchestrator.py        # Agent orchestration
-├── llmstack/                  # LLMStack examples and configs
-├── ai-tools/                  # Additional AI tools
-├── requirements.txt           # Python dependencies
-└── README.md                  # This file
+│   └── orchestrator.py       # Agent orchestration
+├── apps/                     # Production applications
+│   ├── rag_chatbot.json     # RAG chatbot configuration
+│   └── code_pipeline.sh     # Code generation pipeline
+├── llmstack/                 # LLMStack examples and configs
+├── ai-tools/                 # Additional AI tools
+├── requirements.txt          # Python dependencies
+└── README.md                 # This file
 ```
 
 ## 🔧 Advanced Usage
@@ -120,10 +160,20 @@ Edit `~/.autogen/config.json` to add custom models:
 
 After successful deployment:
 
+### Main Applications
 - **LLMStack UI:** http://localhost:3000
-- **Flowise:** http://localhost:3001
+- **Flowise:** http://localhost:3001  
 - **OpenHands:** http://localhost:3002
+
+### Monitoring & Management
+- **Grafana:** http://localhost:3003 (admin/admin)
+- **Prometheus:** http://localhost:9090
+
+### API Endpoints  
 - **Ollama API:** http://localhost:11434/v1
+- **LM Studio API:** http://localhost:1234/v1
+- **vLLM API:** http://localhost:8000/v1
+- **Jan API:** http://localhost:1337/v1
 
 ## 📊 Cost Breakdown
 
@@ -135,25 +185,52 @@ After successful deployment:
 | Flowise | $0 (Open Source) | Zapier ($20/mo) |
 | **Total** | **$0/month** | **$169/month** |
 
-## 🛠️ Troubleshooting
+## 🛠️ Management Commands
 
-### Service won't start
+### Service Management
 ```bash
-docker logs <container_name>
-sudo systemctl status ollama
-lsof -i :3000  # Check port conflicts
+# Start all services
+bash scripts/manage_services.sh start
+
+# Stop all services  
+bash scripts/manage_services.sh stop
+
+# Check service status
+bash scripts/manage_services.sh status
+
+# View service logs
+bash scripts/manage_services.sh logs
 ```
 
-### Out of memory
+### Performance & Optimization
 ```bash
-docker system prune -a
-ollama rm unused_model
+# Run performance benchmark
+python3 scripts/benchmark_system.py
+
+# Optimize system settings
+bash scripts/optimize_system.sh
+
+# Configure providers (after getting admin token from LLMStack UI)
+python3 scripts/configure_providers.py <admin_token>
 ```
 
-### Slow inference
+### Troubleshooting
 ```bash
-export OLLAMA_NUM_PARALLEL=1
-ollama run llama3.2:1b  # Use smaller model
+# Interactive troubleshooting tool
+bash scripts/troubleshoot.sh
+
+# Common fixes
+docker system prune -a          # Clean up Docker
+ollama rm unused_model          # Remove unused models
+bash scripts/optimize_system.sh # Apply optimizations
+```
+
+### Production Applications
+```bash
+# Generate code project
+bash apps/code_pipeline.sh "my-app" "Create a FastAPI web service"
+
+# RAG chatbot configuration available in apps/rag_chatbot.json
 ```
 
 ## 🤝 Contributing

@@ -1,0 +1,25 @@
+{
+  "name": "Local RAG Assistant",
+  "type": "chatbot",
+  "processors": [
+    {
+      "name": "retriever",
+      "type": "vector_search",
+      "config": {
+        "vector_db": "chroma",
+        "top_k": 5,
+        "similarity_threshold": 0.7
+      }
+    },
+    {
+      "name": "generator",
+      "type": "llm",
+      "config": {
+        "provider": "ollama",
+        "model": "mistral:7b",
+        "temperature": 0.3,
+        "system_prompt": "Answer based on the provided context. If unsure, say so."
+      }
+    }
+  ]
+}

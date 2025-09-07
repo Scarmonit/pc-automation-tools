@@ -1,0 +1,49 @@
+{
+  "name": "Local RAG Assistant",
+  "type": "chatbot",
+  "description": "Retrieval-Augmented Generation chatbot using local models and vector storage",
+  "processors": [
+    {
+      "name": "retriever",
+      "type": "vector_search",
+      "config": {
+        "vector_db": "chroma",
+        "top_k": 5,
+        "similarity_threshold": 0.7,
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2"
+      }
+    },
+    {
+      "name": "generator",
+      "type": "llm",
+      "config": {
+        "provider": "ollama",
+        "model": "mistral:7b",
+        "temperature": 0.3,
+        "max_tokens": 512,
+        "system_prompt": "You are a helpful AI assistant. Answer questions based on the provided context. If you're unsure about something or the context doesn't contain relevant information, please say so clearly."
+      }
+    }
+  ],
+  "pipeline": [
+    {
+      "step": "retrieve",
+      "processor": "retriever",
+      "input": "user_query"
+    },
+    {
+      "step": "generate", 
+      "processor": "generator",
+      "input": {
+        "context": "retriever.output",
+        "query": "user_query"
+      }
+    }
+  ],
+  "settings": {
+    "enable_memory": true,
+    "memory_window": 10,
+    "response_format": "markdown",
+    "enable_citations": true
+  }
+}

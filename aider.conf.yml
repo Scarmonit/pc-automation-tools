@@ -1,0 +1,5 @@
+model: ollama/codellama:7b
+openai-api-base: http://localhost:11434/v1
+openai-api-key: ollama
+auto-commits: false
+stream: true

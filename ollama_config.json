@@ -1,0 +1,6 @@
+{
+  "gpu_layers": 35,
+  "num_threads": 8,
+  "context_size": 4096,
+  "batch_size": 512
+}
