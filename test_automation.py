@@ -251,21 +251,21 @@ echo "Hello World"
             result = self.automation._fix_shell_script(script_path)
             self.assertTrue(result)
             
-            # Check that set -e was added
+            # Check that set -e and description were added
             with open(script_path, 'r') as f:
                 content = f.read()
             
             lines = content.split('\n')
             self.assertEqual(lines[0], '#!/bin/bash')
             self.assertEqual(lines[1], 'set -e')
-            self.assertEqual(lines[2], 'echo "Hello World"')
+            self.assertIn('# Description:', content)
             
         finally:
             script_path.unlink()
     
     def test_fix_shell_script_already_fixed(self):
         """Test shell script that already has set -e"""
-        # Create a temporary shell script with set -e
+        # Create a temporary shell script with set -e but missing description
         with tempfile.NamedTemporaryFile(mode='w', suffix='.sh', delete=False) as f:
             f.write("""#!/bin/bash
 set -e
@@ -274,9 +274,15 @@ echo "Hello World"
             script_path = Path(f.name)
         
         try:
-            # Try to fix the script (should return False as no changes needed)
+            # Try to fix the script (should add description even if set -e exists)
             result = self.automation._fix_shell_script(script_path)
-            self.assertFalse(result)
+            self.assertTrue(result)  # Should return True because description was added
+            
+            # Check that description was added
+            with open(script_path, 'r') as f:
+                content = f.read()
+            
+            self.assertIn('# Description:', content)
             
         finally:
             script_path.unlink()
@@ -311,6 +317,125 @@ def main():
             
         finally:
             py_path.unlink()
+    
+    def test_fix_powershell_script(self):
+        """Test PowerShell script fixing"""
+        # Create a temporary PowerShell script without error handling
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.ps1', delete=False, encoding='utf-8') as f:
+            f.write("""Write-Host "Hello World"
+Get-Process
+""")
+            script_path = Path(f.name)
+        
+        try:
+            # Fix the script
+            result = self.automation._fix_powershell_script(script_path)
+            self.assertTrue(result)
+            
+            # Check that error handling and description were added
+            with open(script_path, 'r', encoding='utf-8-sig') as f:
+                content = f.read()
+            
+            lines = content.split('\n')
+            self.assertIn('Description:', lines[0])
+            self.assertIn('$ErrorActionPreference = \'Stop\'', content)
+            
+        finally:
+            script_path.unlink()
+    
+    def test_fix_batch_script(self):
+        """Test batch script fixing"""
+        # Create a temporary batch script without error handling
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.bat', delete=False) as f:
+            f.write("""echo Hello World
+dir
+""")
+            script_path = Path(f.name)
+        
+        try:
+            # Fix the script
+            result = self.automation._fix_batch_script(script_path)
+            self.assertTrue(result)
+            
+            # Check that error handling and description were added
+            with open(script_path, 'r') as f:
+                content = f.read()
+            
+            lines = content.split('\n')
+            self.assertIn('@echo off', lines[0])
+            self.assertIn('setlocal EnableDelayedExpansion', lines[1])
+            self.assertIn(':: Description:', content)
+            
+        finally:
+            script_path.unlink()
+    
+    def test_fix_shell_script_comprehensive(self):
+        """Test comprehensive shell script enhancements"""
+        # Create a temporary shell script that needs comprehensive improvements with enough echo statements
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.sh', delete=False) as f:
+            f.write("""#!/bin/bash
+echo "Starting installation"
+echo "Downloading files"
+curl -O https://example.com/file
+echo "Processing files"
+echo "Configuring system"
+echo "Installing packages"
+echo "Setting up services"
+echo "Running tests"
+echo "Installation complete"
+echo "System ready"
+echo "All done"
+""")
+            script_path = Path(f.name)
+        
+        try:
+            # Fix the script
+            result = self.automation._fix_shell_script(script_path)
+            self.assertTrue(result)
+            
+            # Check comprehensive improvements
+            with open(script_path, 'r') as f:
+                content = f.read()
+            
+            lines = content.split('\n')
+            self.assertEqual(lines[0], '#!/bin/bash')
+            self.assertEqual(lines[1], 'set -e')
+            self.assertIn('# Description:', content)
+            # Should have logging functions due to many echo statements
+            self.assertIn('log_info()', content)
+            self.assertIn('log_error()', content)
+            
+        finally:
+            script_path.unlink()
+    
+    def test_generate_script_purpose(self):
+        """Test script purpose generation"""
+        automation = self.automation
+        
+        # Test various script name patterns
+        self.assertIn('Install', automation._generate_script_purpose('install_ollama.sh'))
+        self.assertIn('Setup', automation._generate_script_purpose('setup_monitoring.sh'))
+        self.assertIn('Deploy', automation._generate_script_purpose('deploy.sh'))
+        self.assertIn('Validate', automation._generate_script_purpose('validate_deployment.sh'))
+        self.assertIn('Manage', automation._generate_script_purpose('manage_services.sh'))
+        self.assertIn('Troubleshoot', automation._generate_script_purpose('troubleshoot.sh'))
+        self.assertIn('Optimize', automation._generate_script_purpose('optimize_system.sh'))
+        self.assertIn('performance', automation._generate_script_purpose('benchmark.sh'))
+    
+    def test_logging_functions_generation(self):
+        """Test logging functions generation"""
+        functions = self.automation._get_logging_functions()
+        
+        # Check that all required logging functions are present
+        content = '\n'.join(functions)
+        self.assertIn('log_info()', content)
+        self.assertIn('log_success()', content)
+        self.assertIn('log_warning()', content)
+        self.assertIn('log_error()', content)
+        self.assertIn('RED=', content)
+        self.assertIn('GREEN=', content)
+        self.assertIn('YELLOW=', content)
+        self.assertIn('BLUE=', content)
 
 
 def run_tests():

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 # Install Ollama (primary local model server)
 curl -fsSL https://ollama.com/install.sh | sh
 

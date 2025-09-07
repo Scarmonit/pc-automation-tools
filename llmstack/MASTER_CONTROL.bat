@@ -1,4 +1,6 @@
 @echo off
+:: Description: Automation script for master control
+
 cls
 echo ========================================
 echo    AI DEVELOPMENT STACK - MASTER CONTROL

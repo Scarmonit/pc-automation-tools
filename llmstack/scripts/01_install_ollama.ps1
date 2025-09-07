@@ -1,4 +1,8 @@
+﻿# Description: Install and configure 01 ollama
+
 # Ollama Installation Script for Windows
+$ErrorActionPreference = 'Stop'
+
 Write-Host "Installing Ollama for Windows..." -ForegroundColor Green
 
 # Download Ollama installer

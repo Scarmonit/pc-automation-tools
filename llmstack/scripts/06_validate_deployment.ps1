@@ -1,4 +1,8 @@
+﻿# Description: Validate system configuration and health
+
 # Validation Script for LLMStack Deployment
+$ErrorActionPreference = 'Stop'
+
 Write-Host "=== LLMStack Free Agent Validation ===" -ForegroundColor Cyan
 Write-Host ""
 
