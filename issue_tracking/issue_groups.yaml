@@ -1,0 +1,3229 @@
+- category: &id001 !!python/object/apply:__main__.Category
+  - Hardcoded Secrets
+  description: All hardcoded secrets related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-HARDCODED_SECRETS
+  issues:
+  - assigned_to: null
+    category: *id001
+    created_date: '2025-09-07T19:44:14.092463'
+    description: 'Potential password found: PASSWORD=password...'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.development.yml`'
+    id: SEC-HIGH-001
+    line_number: 31
+    remediation_notes: ''
+    severity: &id002 !!python/object/apply:__main__.Severity
+    - HIGH
+    status: &id003 !!python/object/apply:__main__.Status
+    - open
+    title: 'Hardcoded Secrets: Potential password found: PASSWORD=password......'
+  - assigned_to: null
+    category: *id001
+    created_date: '2025-09-07T19:44:14.092477'
+    description: 'Potential password found: PASSWORD=$(openssl...'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/setup_llmstack.sh`'
+    id: SEC-HIGH-002
+    line_number: 16
+    remediation_notes: ''
+    severity: *id002
+    status: *id003
+    title: 'Hardcoded Secrets: Potential password found: PASSWORD=$(openssl......'
+  - assigned_to: null
+    category: *id001
+    created_date: '2025-09-07T19:44:14.092482'
+    description: 'Potential password found: PASSWORD=$(openssl...'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/deploy_llmstack.sh`'
+    id: SEC-HIGH-003
+    line_number: 16
+    remediation_notes: ''
+    severity: *id002
+    status: *id003
+    title: 'Hardcoded Secrets: Potential password found: PASSWORD=$(openssl......'
+  - assigned_to: null
+    category: *id001
+    created_date: '2025-09-07T19:44:14.092493'
+    description: 'Potential password found: password = "VKUY%Ck0"...'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/auto_login.py`'
+    id: SEC-HIGH-004
+    line_number: 83
+    remediation_notes: ''
+    severity: *id002
+    status: *id003
+    title: 'Hardcoded Secrets: Potential password found: password = "VKUY%Ck0"......'
+  - assigned_to: null
+    category: *id001
+    created_date: '2025-09-07T19:44:14.092499'
+    description: 'Potential secret found: SECRET_KEY: "your-secret-key-here"...'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/config/llmstack.yaml`'
+    id: SEC-HIGH-005
+    line_number: 8
+    remediation_notes: ''
+    severity: *id002
+    status: *id003
+    title: 'Hardcoded Secrets: Potential secret found: SECRET_KEY: "your-secret-k...'
+  priority_rank: 1
+  severity: *id002
+  title: Hardcoded Secrets Issues
+- category: &id004 !!python/object/apply:__main__.Category
+  - Network Security
+  description: All network security related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-NETWORK_SECURITY
+  issues:
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092862'
+    description: Service exposed on port 80
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.development.yml`'
+    id: SEC-LOW-001
+    line_number: null
+    remediation_notes: ''
+    severity: &id005 !!python/object/apply:__main__.Severity
+    - LOW
+    status: *id003
+    title: 'Network Security: Service exposed on port 80...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092867'
+    description: Service exposed on port 3000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.development.yml`'
+    id: SEC-LOW-002
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3000...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092870'
+    description: Service exposed on port 3000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.monitoring.yml`'
+    id: SEC-LOW-003
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3000...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092872'
+    description: Service exposed on port 3000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/prometheus.yml`'
+    id: SEC-LOW-004
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3000...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092876'
+    description: Service exposed on port 80
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.vllm.yml`'
+    id: SEC-LOW-005
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 80...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092879'
+    description: Service exposed on port 8000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.vllm.yml`'
+    id: SEC-LOW-006
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 8000...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092881'
+    description: Service exposed on port 3001
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/monitoring/prometheus.yml`'
+    id: SEC-LOW-007
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3001...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092884'
+    description: Service exposed on port 3002
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/monitoring/prometheus.yml`'
+    id: SEC-LOW-008
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3002...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092887'
+    description: Service exposed on port 3000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/monitoring/docker-compose.yml`'
+    id: SEC-LOW-009
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3000...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092892'
+    description: Service exposed on port 80
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/localai_config.yaml`'
+    id: SEC-LOW-010
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 80...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092894'
+    description: Service exposed on port 8080
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/localai_config.yaml`'
+    id: SEC-LOW-011
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 8080...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092897'
+    description: Service exposed on port 80
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/flowise_agent_flow.json`'
+    id: SEC-LOW-012
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 80...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092902'
+    description: Service exposed on port 8080
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/flowise_agent_flow.json`'
+    id: SEC-LOW-013
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 8080...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092904'
+    description: Service exposed on port 80
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/.claude/settings.json`'
+    id: SEC-LOW-014
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 80...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092907'
+    description: Service exposed on port 8080
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/.claude/settings.json`'
+    id: SEC-LOW-015
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 8080...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092910'
+    description: Service exposed on port 3000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/.claude/settings.json`'
+    id: SEC-LOW-016
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3000...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092913'
+    description: Service exposed on port 3001
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/.claude/settings.json`'
+    id: SEC-LOW-017
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 3001...'
+  - assigned_to: null
+    category: *id004
+    created_date: '2025-09-07T19:44:14.092916'
+    description: Service exposed on port 5000
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/.claude/settings.json`'
+    id: SEC-LOW-018
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Network Security: Service exposed on port 5000...'
+  priority_rank: 5
+  severity: *id005
+  title: Network Security Issues
+- category: &id006 !!python/object/apply:__main__.Category
+  - Docker Security
+  description: All docker security related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-DOCKER_SECURITY
+  issues:
+  - assigned_to: null
+    category: *id006
+    created_date: '2025-09-07T19:44:14.092710'
+    description: Container may run as root user
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.development.yml`'
+    id: SEC-MEDIUM-009
+    line_number: null
+    remediation_notes: ''
+    severity: &id007 !!python/object/apply:__main__.Severity
+    - MEDIUM
+    status: *id003
+    title: 'Docker Security: Container may run as root user...'
+  - assigned_to: null
+    category: *id006
+    created_date: '2025-09-07T19:44:14.092713'
+    description: Container may run as root user
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.monitoring.yml`'
+    id: SEC-MEDIUM-010
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Docker Security: Container may run as root user...'
+  - assigned_to: null
+    category: *id006
+    created_date: '2025-09-07T19:44:14.092716'
+    description: Container may run as root user
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.vllm.yml`'
+    id: SEC-MEDIUM-011
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Docker Security: Container may run as root user...'
+  - assigned_to: null
+    category: *id006
+    created_date: '2025-09-07T19:44:14.092719'
+    description: Container may run as root user
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/monitoring/docker-compose.yml`'
+    id: SEC-MEDIUM-012
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Docker Security: Container may run as root user...'
+  priority_rank: 2
+  severity: *id007
+  title: Docker Security Issues
+- category: &id008 !!python/object/apply:__main__.Category
+  - File Permissions
+  description: All file permissions related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-FILE_PERMISSIONS
+  issues:
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092685'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/.env.example`'
+    id: SEC-MEDIUM-001
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092689'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/provider_config.py`'
+    id: SEC-MEDIUM-002
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092692'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/autogen_config.json`'
+    id: SEC-MEDIUM-003
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092695'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/continue_config.json`'
+    id: SEC-MEDIUM-004
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092698'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/ollama_config.json`'
+    id: SEC-MEDIUM-005
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092701'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/configure_providers.py`'
+    id: SEC-MEDIUM-006
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092704'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/.git/config`'
+    id: SEC-MEDIUM-007
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  - assigned_to: null
+    category: *id008
+    created_date: '2025-09-07T19:44:14.092707'
+    description: 'Sensitive file is world-readable: -rw-r--r--'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/localai_config.yaml`'
+    id: SEC-MEDIUM-008
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'File Permissions: Sensitive file is world-readable: -rw-r--r--...'
+  priority_rank: 3
+  severity: *id007
+  title: File Permissions Issues
+- category: &id009 !!python/object/apply:__main__.Category
+  - Dependency Security
+  description: All dependency security related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-DEPENDENCY_SECURITY
+  issues:
+  - assigned_to: null
+    category: *id009
+    created_date: '2025-09-07T19:44:14.092722'
+    description: 'Unpinned dependency: autogen-agentchat'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: SEC-MEDIUM-013
+    line_number: 14
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependency Security: Unpinned dependency: autogen-agentchat...'
+  - assigned_to: null
+    category: *id009
+    created_date: '2025-09-07T19:44:14.092725'
+    description: 'Unpinned dependency: aider-chat'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: SEC-MEDIUM-014
+    line_number: 17
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependency Security: Unpinned dependency: aider-chat...'
+  - assigned_to: null
+    category: *id009
+    created_date: '2025-09-07T19:44:14.092728'
+    description: 'Unpinned dependency: jq'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: SEC-MEDIUM-015
+    line_number: 34
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependency Security: Unpinned dependency: jq...'
+  - assigned_to: null
+    category: *id009
+    created_date: '2025-09-07T19:44:14.092731'
+    description: 'Unpinned dependency: jupyter'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: SEC-MEDIUM-016
+    line_number: 37
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependency Security: Unpinned dependency: jupyter...'
+  - assigned_to: null
+    category: *id009
+    created_date: '2025-09-07T19:44:14.092737'
+    description: 'Unpinned dependency: ipywidgets'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: SEC-MEDIUM-017
+    line_number: 38
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependency Security: Unpinned dependency: ipywidgets...'
+  priority_rank: 4
+  severity: *id007
+  title: Dependency Security Issues
+- category: &id010 !!python/object/apply:__main__.Category
+  - Code Complexity
+  description: All code complexity related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-CODE_COMPLEXITY
+  issues:
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093455'
+    description: 'High cyclomatic complexity in function _check_python_code_smells:
+      11'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-MEDIUM-002
+    line_number: 169
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function _check_pyth...'
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093467'
+    description: 'High cyclomatic complexity in function fix_hardcoded_credentials:
+      11'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_fix.py`'
+    id: QA-MEDIUM-005
+    line_number: 22
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function fix_hardcod...'
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093471'
+    description: 'High cyclomatic complexity in function chat_with_ollama: 12'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/chat_demo.py`'
+    id: QA-MEDIUM-006
+    line_number: 9
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function chat_with_o...'
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093474'
+    description: 'High cyclomatic complexity in function check_service_connections:
+      17'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/verify_connections.py`'
+    id: QA-MEDIUM-007
+    line_number: 16
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function check_servi...'
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093477'
+    description: 'High cyclomatic complexity in function route_task: 11'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-008
+    line_number: 137
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function route_task:...'
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093593'
+    description: 'High cyclomatic complexity in function main: 12'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/run.py`'
+    id: QA-MEDIUM-045
+    line_number: 14
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function main: 12...'
+  - assigned_to: null
+    category: *id010
+    created_date: '2025-09-07T19:44:14.093596'
+    description: 'High cyclomatic complexity in function auto_login: 19'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/auto_login.py`'
+    id: QA-MEDIUM-046
+    line_number: 15
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Complexity: High cyclomatic complexity in function auto_login:...'
+  priority_rank: 6
+  severity: *id007
+  title: Code Complexity Issues
+- category: &id011 !!python/object/apply:__main__.Category
+  - Code Style
+  description: All code style related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-CODE_STYLE
+  issues:
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093460'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-MEDIUM-003
+    line_number: 186
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093463'
+    description: Wildcard import detected
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-MEDIUM-004
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Wildcard import detected...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093480'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-009
+    line_number: 214
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093483'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-010
+    line_number: 215
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093486'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-011
+    line_number: 216
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093490'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-012
+    line_number: 217
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093493'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-013
+    line_number: 218
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093496'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-014
+    line_number: 219
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093498'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-015
+    line_number: 220
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093501'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-016
+    line_number: 221
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093507'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-017
+    line_number: 222
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093510'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-018
+    line_number: 223
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093514'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-019
+    line_number: 224
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093516'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-020
+    line_number: 225
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093519'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-021
+    line_number: 226
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093522'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-022
+    line_number: 230
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093525'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-023
+    line_number: 231
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093528'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-024
+    line_number: 232
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093531'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-025
+    line_number: 236
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093534'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-026
+    line_number: 237
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093539'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-027
+    line_number: 240
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093542'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-028
+    line_number: 242
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093545'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-029
+    line_number: 243
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093548'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-030
+    line_number: 244
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093550'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-031
+    line_number: 246
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093553'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-032
+    line_number: 249
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093556'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-033
+    line_number: 251
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093559'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-034
+    line_number: 252
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093562'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-035
+    line_number: 253
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093565'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-036
+    line_number: 255
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093568'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-037
+    line_number: 257
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093571'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-038
+    line_number: 261
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093574'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-039
+    line_number: 262
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093579'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-040
+    line_number: 268
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093581'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-041
+    line_number: 270
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093584'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-042
+    line_number: 271
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093587'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-043
+    line_number: 275
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.093590'
+    description: Multiple statements on one line
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-MEDIUM-044
+    line_number: 276
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Code Style: Multiple statements on one line...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094376'
+    description: Line too long (119 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-003
+    line_number: 28
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (119 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094379'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-004
+    line_number: 42
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094383'
+    description: Line too long (89 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-005
+    line_number: 43
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (89 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094386'
+    description: Line too long (103 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-006
+    line_number: 44
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (103 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094388'
+    description: Line too long (92 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-007
+    line_number: 45
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (92 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094391'
+    description: Line too long (109 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-008
+    line_number: 53
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (109 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094394'
+    description: Line too long (111 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-009
+    line_number: 68
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (111 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094398'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-010
+    line_number: 72
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094401'
+    description: Line too long (98 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-011
+    line_number: 78
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (98 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094405'
+    description: Line too long (107 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-012
+    line_number: 82
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (107 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094408'
+    description: Line too long (93 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-013
+    line_number: 87
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (93 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094411'
+    description: Line too long (93 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-014
+    line_number: 104
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (93 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094414'
+    description: Line too long (120 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-015
+    line_number: 115
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (120 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094417'
+    description: Line too long (101 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-016
+    line_number: 148
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (101 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094420'
+    description: Line too long (142 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-017
+    line_number: 152
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (142 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094423'
+    description: Line too long (101 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-018
+    line_number: 183
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (101 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094426'
+    description: Line too long (106 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-019
+    line_number: 208
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (106 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094428'
+    description: Line too long (104 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-020
+    line_number: 218
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (104 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094433'
+    description: Line too long (89 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-021
+    line_number: 228
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (89 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094436'
+    description: Line too long (101 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-022
+    line_number: 240
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (101 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094439'
+    description: Line too long (142 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-023
+    line_number: 252
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (142 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094442'
+    description: Line too long (101 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_audit.py`'
+    id: QA-LOW-024
+    line_number: 265
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (101 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094445'
+    description: 'Long function _check_python_code_smells: 52 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-025
+    line_number: 169
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function _check_python_code_smells: 52 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094448'
+    description: Line too long (119 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-026
+    line_number: 35
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (119 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094451'
+    description: Line too long (93 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-027
+    line_number: 59
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (93 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094454'
+    description: Line too long (104 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-028
+    line_number: 112
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (104 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094457'
+    description: Line too long (92 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-029
+    line_number: 127
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (92 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094461'
+    description: Line too long (96 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-030
+    line_number: 133
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (96 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094464'
+    description: Line too long (95 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-031
+    line_number: 261
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (95 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094467'
+    description: Line too long (105 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-032
+    line_number: 266
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (105 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094470'
+    description: Line too long (99 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-033
+    line_number: 297
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (99 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094473'
+    description: Line too long (106 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-034
+    line_number: 298
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (106 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094476'
+    description: Line too long (104 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-035
+    line_number: 307
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (104 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094479'
+    description: Line too long (96 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-036
+    line_number: 313
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (96 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094483'
+    description: Line too long (105 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-037
+    line_number: 358
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (105 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094487'
+    description: Line too long (104 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-038
+    line_number: 396
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (104 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094490'
+    description: Line too long (118 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-LOW-039
+    line_number: 420
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (118 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094492'
+    description: 'Long function fix_hardcoded_credentials: 70 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_fix.py`'
+    id: QA-LOW-040
+    line_number: 22
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function fix_hardcoded_credentials: 70 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094495'
+    description: 'Long function create_env_template: 57 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_fix.py`'
+    id: QA-LOW-041
+    line_number: 94
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function create_env_template: 57 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094498'
+    description: 'Long function update_gitignore: 56 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_fix.py`'
+    id: QA-LOW-042
+    line_number: 153
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function update_gitignore: 56 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094501'
+    description: 'Long function create_security_checklist: 72 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/security_fix.py`'
+    id: QA-LOW-043
+    line_number: 236
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function create_security_checklist: 72 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094504'
+    description: Line too long (95 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/benchmark_system.py`'
+    id: QA-LOW-044
+    line_number: 87
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (95 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094507'
+    description: Line too long (112 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/benchmark_system.py`'
+    id: QA-LOW-045
+    line_number: 137
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (112 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094510'
+    description: 'Long function configure_providers: 61 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/configure_providers.py`'
+    id: QA-LOW-046
+    line_number: 28
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function configure_providers: 61 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094513'
+    description: Line too long (91 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/configure_providers.py`'
+    id: QA-LOW-047
+    line_number: 70
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (91 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094516'
+    description: Line too long (90 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/configure_providers.py`'
+    id: QA-LOW-048
+    line_number: 84
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (90 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094518'
+    description: 'Long function test_flowise: 51 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/test_flowise.py`'
+    id: QA-LOW-049
+    line_number: 15
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function test_flowise: 51 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094522'
+    description: 'Long function chat_with_ollama: 76 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/chat_demo.py`'
+    id: QA-LOW-050
+    line_number: 9
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function chat_with_ollama: 76 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094525'
+    description: Line too long (92 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/chat_demo.py`'
+    id: QA-LOW-051
+    line_number: 69
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (92 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094529'
+    description: Line too long (98 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/TEST_OLLAMA.py`'
+    id: QA-LOW-052
+    line_number: 83
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (98 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094532'
+    description: Line too long (93 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/ai_frameworks_integration.py`'
+    id: QA-LOW-053
+    line_number: 119
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (93 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094535'
+    description: Line too long (95 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/ai_frameworks_integration.py`'
+    id: QA-LOW-054
+    line_number: 208
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (95 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094538'
+    description: Line too long (91 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/ai_frameworks_integration.py`'
+    id: QA-LOW-055
+    line_number: 401
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (91 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094541'
+    description: Line too long (93 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/extract_docx.py`'
+    id: QA-LOW-056
+    line_number: 15
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (93 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094544'
+    description: Line too long (90 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/extract_docx.py`'
+    id: QA-LOW-057
+    line_number: 41
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (90 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094547'
+    description: 'Long function main: 71 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/health_check.py`'
+    id: QA-LOW-058
+    line_number: 97
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function main: 71 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094549'
+    description: 'Long function check_service_connections: 183 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/verify_connections.py`'
+    id: QA-LOW-059
+    line_number: 16
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function check_service_connections: 183 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094552'
+    description: Line too long (114 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/verify_connections.py`'
+    id: QA-LOW-060
+    line_number: 142
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (114 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094555'
+    description: Line too long (108 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/verify_connections.py`'
+    id: QA-LOW-061
+    line_number: 143
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (108 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094558'
+    description: 'Long function index: 101 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-062
+    line_number: 206
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function index: 101 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094561'
+    description: Line too long (96 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-063
+    line_number: 134
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (96 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094564'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-064
+    line_number: 190
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094566'
+    description: Line too long (116 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-065
+    line_number: 215
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (116 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094569'
+    description: Line too long (126 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-066
+    line_number: 217
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (126 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094574'
+    description: Line too long (98 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-067
+    line_number: 221
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (98 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094577'
+    description: Line too long (125 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-068
+    line_number: 222
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (125 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094580'
+    description: Line too long (128 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-069
+    line_number: 223
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (128 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094583'
+    description: Line too long (95 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-070
+    line_number: 225
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (95 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094586'
+    description: Line too long (99 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-071
+    line_number: 244
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (99 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094589'
+    description: Line too long (101 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-072
+    line_number: 253
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (101 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094591'
+    description: Line too long (115 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-073
+    line_number: 271
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (115 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094594'
+    description: Line too long (101 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/unified_orchestrator.py`'
+    id: QA-LOW-074
+    line_number: 289
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (101 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094597'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/run.py`'
+    id: QA-LOW-075
+    line_number: 42
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094602'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/run.py`'
+    id: QA-LOW-076
+    line_number: 44
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094605'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/run.py`'
+    id: QA-LOW-077
+    line_number: 56
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094610'
+    description: 'Long function auto_login: 70 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/auto_login.py`'
+    id: QA-LOW-078
+    line_number: 15
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function auto_login: 70 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094613'
+    description: Line too long (97 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/auto_login.py`'
+    id: QA-LOW-079
+    line_number: 56
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (97 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094615'
+    description: 'Long function dev_team_example: 74 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-080
+    line_number: 54
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function dev_team_example: 74 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094618'
+    description: 'Long function research_team_example: 56 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-081
+    line_number: 131
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function research_team_example: 56 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094621'
+    description: 'Long function code_review_example: 61 lines'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-082
+    line_number: 190
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Long function code_review_example: 61 lines...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094624'
+    description: Line too long (91 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-083
+    line_number: 33
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (91 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094629'
+    description: Line too long (135 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-084
+    line_number: 186
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (135 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094631'
+    description: Line too long (108 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-085
+    line_number: 214
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (108 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094634'
+    description: Line too long (114 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-086
+    line_number: 221
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (114 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094637'
+    description: Line too long (111 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-087
+    line_number: 228
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (111 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094640'
+    description: Line too long (95 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-088
+    line_number: 261
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (95 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094645'
+    description: Line too long (113 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-089
+    line_number: 268
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (113 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094648'
+    description: Line too long (105 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-LOW-090
+    line_number: 275
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (105 characters)...'
+  - assigned_to: null
+    category: *id011
+    created_date: '2025-09-07T19:44:14.094651'
+    description: Line too long (94 characters)
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/src/tests/test_main.py`'
+    id: QA-LOW-091
+    line_number: 91
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Code Style: Line too long (94 characters)...'
+  priority_rank: 7
+  severity: *id007
+  title: Code Style Issues
+- category: &id012 !!python/object/apply:__main__.Category
+  - Shell Scripts
+  description: All shell scripts related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-SHELL_SCRIPTS
+  issues:
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093599'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/install_openhands.sh`'
+    id: QA-MEDIUM-047
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093602'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/stop_services.sh`'
+    id: QA-MEDIUM-048
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093607'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/optimize.sh`'
+    id: QA-MEDIUM-049
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093612'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/essential_commands.sh`'
+    id: QA-MEDIUM-050
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093615'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/install_ollama.sh`'
+    id: QA-MEDIUM-051
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093618'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/setup_vllm.sh`'
+    id: QA-MEDIUM-052
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093621'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/backup.sh`'
+    id: QA-MEDIUM-053
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093623'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/setup_llmstack.sh`'
+    id: QA-MEDIUM-054
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093626'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/validate.sh`'
+    id: QA-MEDIUM-055
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093629'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/start_services.sh`'
+    id: QA-MEDIUM-056
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093632'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/install_jan.sh`'
+    id: QA-MEDIUM-057
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093634'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/install_lm_studio.sh`'
+    id: QA-MEDIUM-058
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093639'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_pipeline.sh`'
+    id: QA-MEDIUM-059
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093642'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/setup_aider.sh`'
+    id: QA-MEDIUM-060
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093644'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/install_flowise.sh`'
+    id: QA-MEDIUM-061
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093647'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/setup_continue.sh`'
+    id: QA-MEDIUM-062
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093650'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/install_agents.sh`'
+    id: QA-MEDIUM-063
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093653'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/validate_deployment.sh`'
+    id: QA-MEDIUM-064
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093655'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/optimize_system.sh`'
+    id: QA-MEDIUM-065
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093658'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/benchmark.sh`'
+    id: QA-MEDIUM-066
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093661'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/install_ollama.sh`'
+    id: QA-MEDIUM-067
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093664'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/setup_vllm.sh`'
+    id: QA-MEDIUM-068
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093667'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/manage_services.sh`'
+    id: QA-MEDIUM-069
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093670'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/check_system.sh`'
+    id: QA-MEDIUM-070
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093672'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/install_jan.sh`'
+    id: QA-MEDIUM-071
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093675'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/install_lm_studio.sh`'
+    id: QA-MEDIUM-072
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093678'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/setup_monitoring.sh`'
+    id: QA-MEDIUM-073
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093680'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/troubleshoot.sh`'
+    id: QA-MEDIUM-074
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093683'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/install_continue.sh`'
+    id: QA-MEDIUM-075
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093686'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/deploy_llmstack.sh`'
+    id: QA-MEDIUM-076
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.093689'
+    description: Missing "set -e" for error handling
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/apps/code_pipeline.sh`'
+    id: QA-MEDIUM-077
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Shell Scripts: Missing "set -e" for error handling...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094654'
+    description: 'Potentially unquoted variables: $LLMSTACK_HOME'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/backup.sh`'
+    id: QA-LOW-092
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $LLMSTACK_HOME...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094657'
+    description: 'Potentially unquoted variables: $LLMSTACK_HOM, $HOME, $LLMSTACK_HOME'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/setup_llmstack.sh`'
+    id: QA-LOW-093
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $LLMSTACK_HOM, $HO...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094660'
+    description: 'Potentially unquoted variables: $respons, $ur, $name'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/validate.sh`'
+    id: QA-LOW-094
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $respons, $ur, $na...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094663'
+    description: 'Potentially unquoted variables: $LLMSTACK_HOM'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/start_services.sh`'
+    id: QA-LOW-095
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $LLMSTACK_HOM...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094666'
+    description: 'Potentially unquoted variables: $HOME'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/install_lm_studio.sh`'
+    id: QA-LOW-096
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $HOME...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094669'
+    description: 'Potentially unquoted variables: $PROJECT_NAME, $PROJECT_NAM, $REQUIREMENTS'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_pipeline.sh`'
+    id: QA-LOW-097
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $PROJECT_NAME, $PR...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094672'
+    description: 'Potentially unquoted variables: $respons, $ur, $name'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/validate_deployment.sh`'
+    id: QA-LOW-098
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $respons, $ur, $na...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094674'
+    description: 'Potentially unquoted variables: $name, $model, $endpoint, $respons,
+      $end_time'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/benchmark.sh`'
+    id: QA-LOW-099
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $name, $model, $en...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094677'
+    description: 'Potentially unquoted variables: $COMMAN'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/manage_services.sh`'
+    id: QA-LOW-100
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $COMMAN...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094680'
+    description: 'Potentially unquoted variables: $VRAM_M, $RAM_GB, $CPU_CORE, $CPU_CORES,
+      $RAM_G'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/check_system.sh`'
+    id: QA-LOW-101
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $VRAM_M, $RAM_GB, ...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094683'
+    description: 'Potentially unquoted variables: $HOME'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/install_lm_studio.sh`'
+    id: QA-LOW-102
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $HOME...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094685'
+    description: 'Potentially unquoted variables: $service, $port'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/troubleshoot.sh`'
+    id: QA-LOW-103
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $service, $port...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094688'
+    description: 'Potentially unquoted variables: $LLMSTACK_HOM, $HOME, $LLMSTACK_HOME'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/scripts/deploy_llmstack.sh`'
+    id: QA-LOW-104
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $LLMSTACK_HOM, $HO...'
+  - assigned_to: null
+    category: *id012
+    created_date: '2025-09-07T19:44:14.094691'
+    description: 'Potentially unquoted variables: $REQUIREMENT, $PROJECT_NAM'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/apps/code_pipeline.sh`'
+    id: QA-LOW-105
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Shell Scripts: Potentially unquoted variables: $REQUIREMENT, $PRO...'
+  priority_rank: 8
+  severity: *id007
+  title: Shell Scripts Issues
+- category: &id013 !!python/object/apply:__main__.Category
+  - Project Structure
+  description: All project structure related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-PROJECT_STRUCTURE
+  issues:
+  - assigned_to: null
+    category: *id013
+    created_date: '2025-09-07T19:44:14.093446'
+    description: 'Missing essential file: LICENSE'
+    due_date: null
+    estimated_effort: null
+    file_path: null
+    id: QA-MEDIUM-001
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Project Structure: Missing essential file: LICENSE...'
+  - assigned_to: null
+    category: *id013
+    created_date: '2025-09-07T19:44:14.094366'
+    description: 'Missing recommended directory: docs'
+    due_date: null
+    estimated_effort: null
+    file_path: null
+    id: QA-LOW-001
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Project Structure: Missing recommended directory: docs...'
+  - assigned_to: null
+    category: *id013
+    created_date: '2025-09-07T19:44:14.094372'
+    description: 'Missing recommended directory: tests'
+    due_date: null
+    estimated_effort: null
+    file_path: null
+    id: QA-LOW-002
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Project Structure: Missing recommended directory: tests...'
+  priority_rank: 9
+  severity: *id007
+  title: Project Structure Issues
+- category: &id014 !!python/object/apply:__main__.Category
+  - Documentation
+  description: All documentation related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-DOCUMENTATION
+  issues:
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.093712'
+    description: No test files found
+    due_date: null
+    estimated_effort: null
+    file_path: null
+    id: QA-MEDIUM-083
+    line_number: null
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Testing: No test files found...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094694'
+    description: 'Documentation contains localhost link: http://localhost:3000'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/README_CLEAN.md`'
+    id: QA-LOW-106
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Documentation: Documentation contains localhost link: http://loca...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094696'
+    description: 'Documentation contains localhost link: http://localhost:3001'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/README_CLEAN.md`'
+    id: QA-LOW-107
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Documentation: Documentation contains localhost link: http://loca...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094699'
+    description: 'Documentation contains localhost link: http://localhost:8080/swagger'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/README_CLEAN.md`'
+    id: QA-LOW-108
+    line_number: null
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Documentation: Documentation contains localhost link: http://loca...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094819'
+    description: TODO/FIXME comment found
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-INFO-001
+    line_number: 195
+    remediation_notes: ''
+    severity: &id015 !!python/object/apply:__main__.Severity
+    - INFO
+    status: *id003
+    title: 'Documentation: TODO/FIXME comment found...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094824'
+    description: TODO/FIXME comment found
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-INFO-002
+    line_number: 196
+    remediation_notes: ''
+    severity: *id015
+    status: *id003
+    title: 'Documentation: TODO/FIXME comment found...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094829'
+    description: TODO/FIXME comment found
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/code_quality_audit.py`'
+    id: QA-INFO-003
+    line_number: 200
+    remediation_notes: ''
+    severity: *id015
+    status: *id003
+    title: 'Documentation: TODO/FIXME comment found...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094832'
+    description: TODO/FIXME comment found
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-INFO-004
+    line_number: 123
+    remediation_notes: ''
+    severity: *id015
+    status: *id003
+    title: 'Documentation: TODO/FIXME comment found...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094835'
+    description: TODO/FIXME comment found
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/examples/04_autogen_agents.py`'
+    id: QA-INFO-005
+    line_number: 125
+    remediation_notes: ''
+    severity: *id015
+    status: *id003
+    title: 'Documentation: TODO/FIXME comment found...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094838'
+    description: Configuration contains placeholder credentials
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/flowise_agent_flow.json`'
+    id: QA-INFO-006
+    line_number: null
+    remediation_notes: ''
+    severity: *id015
+    status: *id003
+    title: 'Configuration: Configuration contains placeholder credentials...'
+  - assigned_to: null
+    category: *id014
+    created_date: '2025-09-07T19:44:14.094841'
+    description: Configuration contains placeholder credentials
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/docker-compose.development.yml`'
+    id: QA-INFO-007
+    line_number: null
+    remediation_notes: ''
+    severity: *id015
+    status: *id003
+    title: 'Configuration: Configuration contains placeholder credentials...'
+  priority_rank: 10
+  severity: *id007
+  title: Documentation Issues
+- category: &id016 !!python/object/apply:__main__.Category
+  - Dependencies
+  description: All dependencies related issues requiring remediation
+  estimated_total_effort: null
+  group_id: GROUP-DEPENDENCIES
+  issues:
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.093692'
+    description: 'Unpinned dependency: autogen-agentchat'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: QA-MEDIUM-078
+    line_number: 14
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependencies: Unpinned dependency: autogen-agentchat...'
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.093697'
+    description: 'Unpinned dependency: aider-chat'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: QA-MEDIUM-079
+    line_number: 17
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependencies: Unpinned dependency: aider-chat...'
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.093701'
+    description: 'Unpinned dependency: jq'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: QA-MEDIUM-080
+    line_number: 34
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependencies: Unpinned dependency: jq...'
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.093706'
+    description: 'Unpinned dependency: jupyter'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: QA-MEDIUM-081
+    line_number: 37
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependencies: Unpinned dependency: jupyter...'
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.093709'
+    description: 'Unpinned dependency: ipywidgets'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: QA-MEDIUM-082
+    line_number: 38
+    remediation_notes: ''
+    severity: *id007
+    status: *id003
+    title: 'Dependencies: Unpinned dependency: ipywidgets...'
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.094702'
+    description: 'Potentially risky dependency: pyyaml>=6.0'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/requirements.txt`'
+    id: QA-LOW-109
+    line_number: 25
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Dependencies: Potentially risky dependency: pyyaml>=6.0...'
+  - assigned_to: null
+    category: *id016
+    created_date: '2025-09-07T19:44:14.094705'
+    description: 'Potentially risky dependency: pyyaml>=6.0.1'
+    due_date: null
+    estimated_effort: null
+    file_path: '`/home/runner/work/pc-automation-tools/pc-automation-tools/llmstack/requirements.txt`'
+    id: QA-LOW-110
+    line_number: 52
+    remediation_notes: ''
+    severity: *id005
+    status: *id003
+    title: 'Dependencies: Potentially risky dependency: pyyaml>=6.0.1...'
+  priority_rank: 11
+  severity: *id007
+  title: Dependencies Issues
