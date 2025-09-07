@@ -3,6 +3,11 @@
 # Set LOGIN_EMAIL and LOGIN_PASSWORD environment variables before running
 # Example: export LOGIN_EMAIL="your-email@example.com"
 #          export LOGIN_PASSWORD="your-secure-password"
+
+# SECURITY WARNING: Credentials should be set via environment variables
+# Set LOGIN_EMAIL and LOGIN_PASSWORD environment variables before running
+# Example: export LOGIN_EMAIL="your-email@example.com"
+#          export LOGIN_PASSWORD="your-secure-password"
 import os
 #!/usr/bin/env python3
 """

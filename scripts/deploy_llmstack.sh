@@ -57,10 +57,10 @@ SECRET_KEY=$(openssl rand -base64 32)
 CIPHER_SALT=$(openssl rand -base64 16)
 DATABASE_PASSWORD=$(openssl rand -base64 24)
 
-# Update the configuration with actual values
-sed -i "s/SECRET_KEY=\$(openssl rand -base64 32)/SECRET_KEY=$SECRET_KEY/" docker/.env.production
-sed -i "s/CIPHER_SALT=\$(openssl rand -base64 16)/CIPHER_SALT=$CIPHER_SALT/" docker/.env.production
-sed -i "s/DATABASE_PASSWORD=\$(openssl rand -base64 24)/DATABASE_PASSWORD=$DATABASE_PASSWORD/" docker/.env.production
+# Update the configuration with actual values (escape special characters)
+sed -i "s|SECRET_KEY=\$(openssl rand -base64 32)|SECRET_KEY=$SECRET_KEY|" docker/.env.production
+sed -i "s|CIPHER_SALT=\$(openssl rand -base64 16)|CIPHER_SALT=$CIPHER_SALT|" docker/.env.production
+sed -i "s|DATABASE_PASSWORD=\$(openssl rand -base64 24)|DATABASE_PASSWORD=$DATABASE_PASSWORD|" docker/.env.production
 
 # Build client assets (check if client directory exists)
 if [ -d "client" ]; then

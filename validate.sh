@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e  # Exit on any error
 
 echo "=== LLMStack Free Agent Validation ==="
 echo

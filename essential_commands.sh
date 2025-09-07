@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e  # Exit on any error
+
 # Essential commands from compass1 artifact PHASE_8
 
 echo "=== LLMStack Essential Commands ==="
@@ -7,9 +9,28 @@ echo
 case "$1" in
     "start")
         echo "Starting all services..."
-        docker compose up -d
-        ollama serve &
-        ./lm-studio.AppImage server start --port 1234 &
+        if [ -f "docker-compose.yml" ] || [ -f "docker-compose.yaml" ]; then
+            docker compose up -d || {
+                echo "ERROR: Failed to start Docker services"
+                exit 1
+            }
+        else
+            echo "WARNING: No docker-compose file found in current directory"
+        fi
+        
+        if command -v ollama >/dev/null 2>&1; then
+            echo "Starting Ollama..."
+            ollama serve &
+        else
+            echo "WARNING: Ollama not found"
+        fi
+        
+        if [ -f "./lm-studio.AppImage" ]; then
+            echo "Starting LM Studio..."
+            ./lm-studio.AppImage server start --port 1234 &
+        else
+            echo "WARNING: LM Studio AppImage not found"
+        fi
         ;;
     "stop")
         echo "Stopping all services..."
