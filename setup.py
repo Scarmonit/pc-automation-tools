@@ -49,9 +49,9 @@ class AIPlatformSetup:
         print(f"Python {version.major}.{version.minor}.{version.micro}")
         
         if version.major < 3 or (version.major == 3 and version.minor < 8):
-            print("❌ Python 3.8+ required")
+            print("[ERROR] Python 3.8+ required")
             return False
-        print("✅ Python version OK")
+        print("[OK] Python version OK")
         return True
     
     def install_requirements(self):
@@ -82,7 +82,7 @@ class AIPlatformSetup:
             # Check if Ollama is installed
             result = subprocess.run("ollama version", shell=True, capture_output=True)
             if result.returncode != 0:
-                print("⚠️  Ollama not installed. Please install from: https://ollama.ai/download")
+                print("[WARNING] Ollama not installed. Please install from: https://ollama.ai/download")
                 return False
         
         # Pull required models
@@ -102,7 +102,7 @@ class AIPlatformSetup:
         # Check if Docker is running
         result = subprocess.run("docker version", shell=True, capture_output=True)
         if result.returncode != 0:
-            print("⚠️  Docker not running. Please start Docker Desktop")
+            print("[WARNING] Docker not running. Please start Docker Desktop")
             return False
         
         # Navigate to infrastructure directory
@@ -135,9 +135,9 @@ class AIPlatformSetup:
         if not env_file.exists() and env_example.exists():
             print("Creating .env file from example...")
             env_example.rename(env_file)
-            print("✅ Created .env file - Please update with your API keys")
+            print("[OK] Created .env file - Please update with your API keys")
         elif env_file.exists():
-            print("✅ .env file already exists")
+            print("[OK] .env file already exists")
         
         return True
     
@@ -180,7 +180,7 @@ class AIPlatformSetup:
         for dir_name in dirs:
             dir_path = self.root_dir / dir_name
             dir_path.mkdir(exist_ok=True)
-            print(f"✅ Created {dir_name}/")
+            print(f"[OK] Created {dir_name}/")
         
         return True
     
@@ -198,9 +198,9 @@ class AIPlatformSetup:
         )
         
         if result.returncode == 0:
-            print("✅ Main module working")
+            print("[OK] Main module working")
         else:
-            print(f"❌ Main module error: {result.stderr}")
+            print(f"[ERROR] Main module error: {result.stderr}")
         
         return result.returncode == 0
     
@@ -223,13 +223,13 @@ class AIPlatformSetup:
         for step_name, step_func in steps:
             try:
                 if not step_func():
-                    print(f"\n⚠️  {step_name} setup incomplete (continuing...)")
+                    print(f"\n[WARNING] {step_name} setup incomplete (continuing...)")
             except Exception as e:
-                print(f"\n❌ {step_name} failed: {str(e)}")
+                print(f"\n[ERROR] {step_name} failed: {str(e)}")
                 continue
         
         self.print_header("SETUP COMPLETE")
-        print("\n🚀 AI Platform is ready to use!")
+        print("\n[READY] AI Platform is ready to use!")
         print("\nQuick Start:")
         print("  python main.py list           - List all modules")
         print("  python main.py core           - Run core platform")
