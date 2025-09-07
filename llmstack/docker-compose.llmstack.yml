@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: llmstack-postgres
+    environment:
+      POSTGRES_DB: llmstack
+      POSTGRES_USER: llmstack
+      POSTGRES_PASSWORD: llmstack_secure_password_2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U llmstack"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - llmstack-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: llmstack-redis
+    command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - llmstack-network
+
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: llmstack-chroma
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      IS_PERSISTENT: TRUE
+      ANONYMIZED_TELEMETRY: FALSE
+      ALLOW_RESET: TRUE
+    networks:
+      - llmstack-network
+
+  flowise:
+    image: flowiseai/flowise:latest
+    container_name: llmstack-flowise
+    ports:
+      - "3001:3000"
+    volumes:
+      - flowise_data:/root/.flowise
+    environment:
+      FLOWISE_USERNAME: admin
+      FLOWISE_PASSWORD: flowise_admin_2024
+      DATABASE_TYPE: sqlite
+      DATABASE_PATH: /root/.flowise
+      APIKEY_PATH: /root/.flowise
+      SECRETKEY_PATH: /root/.flowise
+      LOG_PATH: /root/.flowise/logs
+      BLOB_STORAGE_PATH: /root/.flowise/storage
+    networks:
+      - llmstack-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: llmstack-grafana
+    ports:
+      - "3003:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: grafana_admin_2024
+      GF_INSTALL_PLUGINS: redis-datasource
+      GF_AUTH_ANONYMOUS_ENABLED: true
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - llmstack-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  chroma_data:
+  flowise_data:
+  grafana_data:
+
+networks:
+  llmstack-network:
+    driver: bridge

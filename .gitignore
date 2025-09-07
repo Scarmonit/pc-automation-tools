@@ -1,0 +1,12 @@
+# Ignore everything except specified files
+/*
+!/.gitignore
+!/src/
+!/scripts/
+!/docs/
+!/swarm-intelligence/
+!/requirements*.txt
+!/*.py
+!/*.bat
+!/*.md
+!/*.html
