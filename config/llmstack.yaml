@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: llmstack-config
+data:
+  # LLMStack Configuration
+  LLMSTACK_PORT: "3000"
+  LLMSTACK_SECRET_KEY: "your-secret-key-here"
+  
+  # Database Configuration
+  DATABASE_URL: "postgresql://postgres:password@postgres:5432/llmstack"
+  
+  # Redis Configuration
+  REDIS_URL: "redis://redis:6379/0"
+  
+  # Ollama Configuration
+  OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+  
+  # Default Models
+  DEFAULT_LLM_MODEL: "llama3.2:3b"
+  DEFAULT_EMBEDDING_MODEL: "nomic-embed-text"
+  
+  # Feature Flags
+  ENABLE_AGENTS: "true"
+  ENABLE_RAG: "true"
+  ENABLE_WORKFLOWS: "true"
+  
+  # Performance Settings
+  MAX_CONCURRENT_REQUESTS: "10"
+  REQUEST_TIMEOUT: "30"
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llmstack-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llmstack
+  template:
+    metadata:
+      labels:
+        app: llmstack
+    spec:
+      containers:
+      - name: llmstack
+        image: trypromptly/llmstack:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: LLMSTACK_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: llmstack-config
+              key: LLMSTACK_PORT
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: llmstack-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: llmstack-config
+              key: REDIS_URL
+        - name: OLLAMA_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: llmstack-config
+              key: OLLAMA_BASE_URL
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llmstack-service
+spec:
+  selector:
+    app: llmstack
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer

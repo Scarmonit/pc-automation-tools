@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  llmstack:
+    image: trypromptly/llmstack:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - LLMSTACK_PORT=3000
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/llmstack
+      - REDIS_URL=redis://redis:6379/0
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - DEBUG=true
+      - ENABLE_AGENTS=true
+      - ENABLE_RAG=true
+    volumes:
+      - llmstack_media:/app/media
+      - ./config:/app/config:ro
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - llmstack-network
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=llmstack
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - llmstack-network
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - llmstack-network
+
+  # Development tools
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - llmstack-network
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    networks:
+      - llmstack-network
+
+volumes:
+  llmstack_media:
+  postgres_data:
+  redis_data:
+  pgadmin_data:
+
+networks:
+  llmstack-network:
+    driver: bridge
