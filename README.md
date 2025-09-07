@@ -15,6 +15,36 @@ Deploy LLMStack with local AI models (Ollama, LM Studio, vLLM) and free AI agent
 - **OS:** Linux, macOS, or Windows with WSL2
 - **Docker:** Required for containerized services
 
+## 🤖 Auto Submit Functionality
+
+NEW: Automated bug reporting and merge request creation based on audit findings.
+
+### Quick Auto Submit
+```bash
+# Set GitHub token
+export GITHUB_TOKEN=your_github_token
+
+# Run full automation (audits + bug reports + merge requests)
+./auto_submit.sh auto
+
+# Or preview what would be done
+./auto_submit.sh dry-run
+```
+
+### Auto Submit Options
+```bash
+# Submit bugs from audit findings
+python3 auto_submit.py bugs --type all
+
+# Create merge requests for fixes
+python3 auto_submit.py merges --type shell
+
+# Full automation workflow
+python3 auto_submit.py auto
+```
+
+See [AUTO_SUBMIT_README.md](AUTO_SUBMIT_README.md) for detailed documentation.
+
 ## 🚀 Quick Start
 
 ### One-Command Deployment
