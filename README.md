@@ -93,27 +93,31 @@ python3 scripts/benchmark_system.py
 
 ## 📚 Documentation
 
-### 🎯 Quick Start Guides
+### 🎯 AI Agent Setup Guides
 - **[AutoGen Multi-Agent Setup](docs/AUTOGEN_SETUP_GUIDE.md)** - Multi-agent conversations and collaboration
-- **[Aider AI Pair Programming](docs/AIDER_SETUP_GUIDE.md)** - AI-powered coding assistant
+- **[Aider AI Pair Programming](docs/AIDER_SETUP_GUIDE.md)** - Terminal-based AI coding assistant
 - **[MemGPT Memory Agents](docs/MEMGPT_SETUP_GUIDE.md)** - Persistent memory AI agents
+- **[CAMEL-AI Role Playing](docs/CAMEL_AI_SETUP_GUIDE.md)** - Role-playing multi-agent scenarios
 - **[Flowise Visual Workflows](llmstack/FLOWISE_AGENT_SETUP.md)** - Visual AI workflow builder
 - **[OpenHands Coding Assistant](llmstack/OPENHANDS_SETUP_GUIDE.md)** - AI coding and project management
 
-### 🛠️ Operations & Monitoring
+### 💻 Development Tools
+- **[Continue VS Code Extension](docs/CONTINUE_VSCODE_SETUP_GUIDE.md)** - AI-powered coding in VS Code
+- **[Jan Desktop Assistant](docs/JAN_DESKTOP_SETUP_GUIDE.md)** - User-friendly desktop AI interface
+- **[LM Studio Setup](docs/LM_STUDIO_SETUP_GUIDE.md)** - Beautiful local model management
+- **[GitHub Copilot Integration](docs/COPILOT_AGENTS_GUIDE.md)** - Repository-aware code completion
+
+### ⚡ High-Performance Deployment
+- **[vLLM Deployment Guide](docs/VLLM_DEPLOYMENT_GUIDE.md)** - High-performance model serving
 - **[Monitoring & Observability](docs/MONITORING_SETUP_GUIDE.md)** - Prometheus, Grafana, and metrics
-- **[Troubleshooting Guide](docs/TROUBLESHOOTING_GUIDE.md)** - Comprehensive problem resolution
 
-### 🤖 GitHub Copilot Integration
-- **[Copilot Agents Guide](docs/COPILOT_AGENTS_GUIDE.md)** - Repository-aware code completion
-- **Quick Setup**: `bash scripts/setup_copilot_agents.sh`
+### 🛠️ Operations & Troubleshooting
+- **[Comprehensive Troubleshooting](docs/TROUBLESHOOTING_GUIDE.md)** - Systematic problem resolution
+- **[API Integration Guide](docs/API_INTEGRATION_GUIDE.md)** - Complete API usage and SDK development
 
-### 📝 Examples & Tutorials
-- **[Ollama Chat Examples](llmstack/examples/01_ollama_chat.md)**
-- **[Flowise Workflows](llmstack/examples/02_flowise_workflows.md)**
-- **[Aider Coding Sessions](llmstack/examples/03_aider_coding.md)**
-- **[AutoGen Agent Scripts](llmstack/examples/04_autogen_agents.py)**
-- **[Monitoring Setup](llmstack/examples/05_monitoring.md)**
+### 🤝 Contributing & Development
+- **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute to the project
+- **[Examples & Tutorials](llmstack/examples/)** - Practical usage examples
 
 ## 🧠 Available AI Components
 
