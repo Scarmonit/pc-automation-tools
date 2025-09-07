@@ -2,10 +2,13 @@
 """
 Health check script for llmstack project
 Verifies all modules are properly configured and accessible
+Enhanced with AI agent service health checks
 """
 
 import sys
 import importlib
+import requests
+import time
 from pathlib import Path
 from typing import Dict, List, Tuple
 import json
@@ -73,6 +76,74 @@ def count_modules() -> Dict[str, int]:
     return counts
 
 
+def check_ai_services() -> Dict[str, Dict[str, str]]:
+    """Check AI agent services health"""
+    services = {
+        'ollama': {
+            'url': 'http://localhost:11434/api/tags',
+            'name': 'Ollama Local AI',
+            'timeout': 5
+        },
+        'llmstack': {
+            'url': 'http://localhost:3000/api/health',
+            'name': 'LLMStack UI',
+            'timeout': 10
+        },
+        'flowise': {
+            'url': 'http://localhost:3001/api/v1/chatflows',
+            'name': 'Flowise AI Workflows',
+            'timeout': 10
+        },
+        'openhands': {
+            'url': 'http://localhost:3002/health',
+            'name': 'OpenHands Coding Assistant',
+            'timeout': 10
+        }
+    }
+    
+    results = {}
+    for service_id, config in services.items():
+        try:
+            response = requests.get(
+                config['url'], 
+                timeout=config['timeout'],
+                headers={'User-Agent': 'LLMStack-HealthCheck/1.0'}
+            )
+            if response.status_code == 200:
+                results[service_id] = {
+                    'status': 'OK',
+                    'message': f"HTTP {response.status_code}",
+                    'name': config['name']
+                }
+            else:
+                results[service_id] = {
+                    'status': 'ERROR',
+                    'message': f"HTTP {response.status_code}",
+                    'name': config['name']
+                }
+        except requests.exceptions.ConnectTimeout:
+            results[service_id] = {
+                'status': 'TIMEOUT',
+                'message': f"Timeout after {config['timeout']}s",
+                'name': config['name']
+            }
+        except requests.exceptions.ConnectionError:
+            results[service_id] = {
+                'status': 'OFFLINE',
+                'message': 'Connection refused',
+                'name': config['name']
+            }
+        except Exception as e:
+            results[service_id] = {
+                'status': 'ERROR',
+                'message': str(e)[:50],
+                'name': config['name']
+            }
+    
+    return results
+
+
+    """Check if key dependencies are installed"""
 def check_dependencies() -> Dict[str, bool]:
     """Check if key dependencies are installed"""
     dependencies = [
@@ -80,13 +151,17 @@ def check_dependencies() -> Dict[str, bool]:
         'uvicorn',
         'pydantic',
         'numpy',
-        'dotenv',
+        'requests',
+        'python-dotenv',
     ]
     
     results = {}
     for dep in dependencies:
         try:
-            __import__(dep)
+            if dep == 'python-dotenv':
+                __import__('dotenv')
+            else:
+                __import__(dep)
             results[dep] = True
         except ImportError:
             results[dep] = False
@@ -142,6 +217,19 @@ def main():
         status = "[INSTALLED]" if installed else "[MISSING]"
         print(f"  {status} {dep}")
     
+    # Check AI services
+    print("\n[AI SERVICES HEALTH CHECK]")
+    ai_services = check_ai_services()
+    for service_id, result in ai_services.items():
+        status_map = {
+            'OK': '[ONLINE]',
+            'OFFLINE': '[OFFLINE]',
+            'TIMEOUT': '[TIMEOUT]',
+            'ERROR': '[ERROR]'
+        }
+        status = status_map.get(result['status'], '[UNKNOWN]')
+        print(f"  {status} {result['name']:25} : {result['message']}")
+    
     # Summary
     print("\n" + "=" * 60)
     print("SUMMARY:")
@@ -150,18 +238,24 @@ def main():
     imports_ok = all(import_results.values())
     deps_installed = sum(deps.values())
     deps_total = len(deps)
+    ai_services_ok = sum(1 for r in ai_services.values() if r['status'] == 'OK')
+    ai_services_total = len(ai_services)
     
     print(f"  File Structure : {'Complete' if structure_ok else 'Incomplete'}")
     print(f"  Module Imports : {'All OK' if imports_ok else 'Some failures'}")
     print(f"  Dependencies   : {deps_installed}/{deps_total} installed")
+    print(f"  AI Services    : {ai_services_ok}/{ai_services_total} online")
     print(f"  Total Modules  : {total} Python files")
     
     # Overall status
     if structure_ok and imports_ok and deps_installed > 0:
-        print("\n[PROJECT STATUS: HEALTHY]")
+        if ai_services_ok >= 1:
+            print("\n[PROJECT STATUS: HEALTHY WITH AI SERVICES]")
+        else:
+            print("\n[PROJECT STATUS: HEALTHY (AI services offline)]")
         return 0
     elif structure_ok and total > 50:
-        print("\n[PROJECT STATUS: FUNCTIONAL (some dependencies missing)]")
+        print("\n[PROJECT STATUS: FUNCTIONAL (some components missing)]")
         return 0
     else:
         print("\n[PROJECT STATUS: NEEDS ATTENTION]")

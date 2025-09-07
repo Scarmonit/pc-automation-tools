@@ -13,7 +13,7 @@ def create_autogen_agent():
     # Copilot should suggest the import and complete configuration
     pass
 
-# Test 2: Docker service deployment pattern  
+# Test 2: Docker service deployment pattern
 # When typing this, Copilot should suggest Docker deployment code
 def deploy_docker_service():
     """Deploy a containerized service"""

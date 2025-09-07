@@ -5,7 +5,6 @@ Automatically fixes critical security issues found in the audit
 """
 
 import os
-import re
 import secrets
 import string
 from pathlib import Path
@@ -21,15 +20,15 @@ def generate_secret_key(length=50):
 
 def fix_hardcoded_credentials():
     """Fix hardcoded credentials by replacing with environment variables"""
-    
+
     print("🔧 Fixing hardcoded credentials...")
-    
+
     # Fix auto_login.py - remove hardcoded password
     auto_login_path = Path("llmstack/auto_login.py")
     if auto_login_path.exists():
         with open(auto_login_path, 'r') as f:
             content = f.read()
-        
+
         # Replace hardcoded credentials with environment variables
         new_content = content.replace(
             'email = "scarmonit@gmail.com"',
@@ -38,11 +37,11 @@ def fix_hardcoded_credentials():
             'password = "VKUY%Ck0"',
             'password = os.getenv("LOGIN_PASSWORD", "")'
         )
-        
+
         # Add import for os if not present
         if 'import os' not in new_content:
             new_content = 'import os\n' + new_content
-            
+
         # Add security warning comment
         security_comment = '''
 # SECURITY WARNING: Credentials should be set via environment variables
@@ -51,17 +50,17 @@ def fix_hardcoded_credentials():
 #          export LOGIN_PASSWORD="your-secure-password"
 '''
         new_content = security_comment + new_content
-        
+
         with open(auto_login_path, 'w') as f:
             f.write(new_content)
         print(f"  ✅ Fixed hardcoded credentials in {auto_login_path}")
-    
+
     # Fix config/llmstack.yaml - replace placeholder secret
     config_path = Path("config/llmstack.yaml")
     if config_path.exists():
         with open(config_path, 'r') as f:
             content = f.read()
-        
+
         # Replace placeholder secret key
         new_content = content.replace(
             'LLMSTACK_SECRET_KEY: "your-secret-key-here"',
@@ -70,32 +69,32 @@ def fix_hardcoded_credentials():
             'DATABASE_URL: "postgresql://postgres:password@postgres:5432/llmstack"',
             'DATABASE_URL: "${DATABASE_URL}"'
         )
-        
+
         with open(config_path, 'w') as f:
             f.write(new_content)
         print(f"  ✅ Fixed placeholder secrets in {config_path}")
-    
+
     # Fix docker-compose.development.yml - use environment variables
     docker_compose_path = Path("docker-compose.development.yml")
     if docker_compose_path.exists():
         with open(docker_compose_path, 'r') as f:
             content = f.read()
-        
+
         # Replace hardcoded password with environment variable
         new_content = content.replace(
             '- POSTGRES_PASSWORD=password',
             '- POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}'
         )
-        
+
         with open(docker_compose_path, 'w') as f:
             f.write(new_content)
         print(f"  ✅ Fixed hardcoded password in {docker_compose_path}")
 
 def create_env_template():
     """Create a comprehensive .env template with secure defaults"""
-    
+
     print("📝 Creating secure environment template...")
-    
+
     env_template = f"""# LLMStack Environment Configuration
 # Copy this file to .env and update with your actual values
 
@@ -107,7 +106,7 @@ JWT_SECRET_KEY={generate_secret_key()}
 DATABASE_URL=postgresql://postgres:${{POSTGRES_PASSWORD}}@localhost:5432/llmstack
 POSTGRES_PASSWORD={generate_secure_password()}
 
-# Redis Configuration  
+# Redis Configuration
 REDIS_URL=redis://localhost:6379/0
 REDIS_PASSWORD={generate_secure_password()}
 
@@ -145,18 +144,18 @@ CORS_ORIGINS=http://localhost:3000,http://localhost:3001
 ALLOWED_HOSTS=localhost,127.0.0.1
 SECURE_COOKIES=true
 """
-    
+
     with open('.env.template', 'w') as f:
         f.write(env_template)
     print("  ✅ Created .env.template with secure defaults")
 
 def update_gitignore():
     """Update .gitignore to ensure sensitive files are not committed"""
-    
+
     print("🛡️  Updating .gitignore for security...")
-    
+
     gitignore_path = Path('.gitignore')
-    
+
     # Security-focused gitignore additions
     security_additions = """
 # Security - Sensitive files (DO NOT COMMIT)
@@ -193,11 +192,11 @@ security.log
 access.log
 error.log
 """
-    
+
     if gitignore_path.exists():
         with open(gitignore_path, 'r') as f:
             content = f.read()
-        
+
         # Only add if not already present
         if 'Security - Sensitive files' not in content:
             with open(gitignore_path, 'a') as f:
@@ -210,32 +209,32 @@ error.log
 
 def fix_docker_security():
     """Fix Docker security issues"""
-    
+
     print("🐳 Fixing Docker security issues...")
-    
+
     docker_files = [
         "docker-compose.development.yml",
-        "docker-compose.monitoring.yml", 
+        "docker-compose.monitoring.yml",
         "docker-compose.vllm.yml"
     ]
-    
+
     for docker_file in docker_files:
         docker_path = Path(docker_file)
         if docker_path.exists():
             with open(docker_path, 'r') as f:
                 content = f.read()
-            
+
             # Add security context and user
             if 'user:' not in content and 'security_opt:' not in content:
                 # Add security improvements - this is a simplified approach
                 # In practice, each service would need specific user configuration
                 print(f"  ⚠️  {docker_file} needs manual review for user configuration")
-    
+
     print("  ✅ Docker files flagged for security review")
 
 def create_security_checklist():
     """Create a security checklist for the team"""
-    
+
     checklist = """# Security Checklist
 
 ## Critical Actions Required
@@ -288,7 +287,7 @@ def create_security_checklist():
 - [ ] Monitor logs for suspicious activity
 - [ ] Check for security alerts
 
-### Weekly  
+### Weekly
 - [ ] Review access logs
 - [ ] Update dependencies if needed
 
@@ -302,7 +301,7 @@ def create_security_checklist():
 - [ ] Security training for team
 - [ ] Review security policies
 """
-    
+
     with open('SECURITY_CHECKLIST.md', 'w') as f:
         f.write(checklist)
     print("📋 Created SECURITY_CHECKLIST.md")
@@ -311,13 +310,13 @@ def main():
     """Main function to run all security fixes"""
     print("🚨 Starting Critical Security Fixes...")
     print("=" * 50)
-    
+
     fix_hardcoded_credentials()
     create_env_template()
     update_gitignore()
     fix_docker_security()
     create_security_checklist()
-    
+
     print("\n" + "=" * 50)
     print("✅ Critical security fixes completed!")
     print("\n🎯 IMMEDIATE ACTIONS REQUIRED:")

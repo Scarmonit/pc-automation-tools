@@ -1,5 +1,4 @@
 import requests
-import json
 
 LLMSTACK_API = "http://localhost:3000/api"
 ADMIN_TOKEN = "your-admin-token"  # Get from LLMStack UI
