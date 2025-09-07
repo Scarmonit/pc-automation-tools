@@ -1,6 +1,11 @@
 """
-PC Automation Tools Module
-Provides Windows automation and screenshot capabilities
+PC Tools Module
+Automation and system tools for PC management
 """
 
-__version__ = "1.0.0"
+from .screenshot import take_screenshot, ScreenshotManager
+
+__all__ = [
+    'take_screenshot',
+    'ScreenshotManager'
+]
