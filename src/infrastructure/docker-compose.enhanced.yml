@@ -1,0 +1,759 @@
+version: '3.8'
+
+# Enhanced Docker Compose Configuration for AI Swarm Intelligence
+# Includes comprehensive error handling, failover, and monitoring
+
+services:
+  # Enhanced Swarm API Service
+  swarm-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.swarm-api
+      args:
+        - ENABLE_ENHANCED_FEATURES=true
+    container_name: swarm-api-primary
+    hostname: swarm-api-primary
+    ports:
+      - "8001:8001"
+    environment:
+      - SWARM_MODE=production
+      - DATABASE_PATH=/data/swarm_memory.db
+      - SYNC_DATABASE_PATH=/data/swarm_sync.db
+      - ENABLE_AUTOGPT=true
+      - ENABLE_FAILOVER=true
+      - ENABLE_DATABASE_SYNC=true
+      - ENABLE_HEALTH_MONITORING=true
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+      - CIRCUIT_BREAKER_THRESHOLD=5
+      - RETRY_MAX_ATTEMPTS=3
+      - HEALTH_CHECK_INTERVAL=30
+      - SYNC_INTERVAL=60
+      - BACKUP_INTERVAL=3600
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ./logs:/logs
+      - ./backups:/backups
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+      - monitoring-network
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/docker_health_checker.py", "--service", "swarm-api"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    labels:
+      - "com.swarm.service=api"
+      - "com.swarm.tier=primary"
+      - "com.swarm.health.endpoint=/health"
+
+  # Enhanced API Bridge with Failover
+  api-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile.api-bridge
+    container_name: swarm-api-bridge
+    hostname: api-bridge
+    ports:
+      - "8002:8002"
+    environment:
+      - BRIDGE_MODE=enhanced
+      - SWARM_API_ENDPOINT=http://swarm-api-primary:8001
+      - SWARM_BACKUP_ENDPOINTS=http://swarm-api-secondary:8001
+      - AUTOGPT_API_URL=http://autogpt-primary:3000
+      - AUTOGPT_SECONDARY_URLS=http://autogpt-secondary:3000,http://autogpt-fallback:3000
+      - ENABLE_CIRCUIT_BREAKER=true
+      - ENABLE_RATE_LIMITING=true
+      - ENABLE_PERFORMANCE_MONITORING=true
+      - CIRCUIT_BREAKER_FAILURE_THRESHOLD=5
+      - RATE_LIMIT_REQUESTS_PER_MINUTE=1000
+      - HEALTH_CHECK_INTERVAL=30
+      - FAILOVER_TIMEOUT=60
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./logs:/logs
+      - ./data:/shared-data
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+      - monitoring-network
+    depends_on:
+      - swarm-api
+      - autogpt-primary
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    labels:
+      - "com.swarm.service=bridge"
+      - "com.swarm.tier=primary"
+
+  # Primary AutoGPT Service with Enhanced Error Handling
+  autogpt-primary:
+    image: significantgravitas/autogpt:latest
+    container_name: swarm-autogpt-primary
+    hostname: autogpt-primary
+    ports:
+      - "3000:3000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - AUTOGPT_WORKSPACE_PATH=/workspace
+      - AUTOGPT_PLUGINS_PATH=/plugins
+      - AUTOGPT_LOGS_PATH=/logs
+      - SWARM_MODE=true
+      - SWARM_AGENT_ID=autogpt-primary
+      - SWARM_API_ENDPOINT=http://swarm-api-primary:8001
+      - SWARM_MEMORY_SYNC=true
+      - ENABLE_ERROR_RECOVERY=true
+      - ENABLE_HEALTH_MONITORING=true
+      - CONTINUOUS_MODE=false
+      - TEMPERATURE=0.7
+      - MAX_ITERATIONS=50
+      - CIRCUIT_BREAKER_ENABLED=true
+      - RETRY_MAX_ATTEMPTS=3
+      - HEALTH_CHECK_ENDPOINT=true
+      - GRACEFUL_SHUTDOWN_TIMEOUT=30
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./agents/autogpt/workspace:/workspace
+      - ./agents/autogpt/plugins:/plugins
+      - ./agents/autogpt/logs:/logs
+      - ./agents/autogpt/config:/config
+      - ./data:/shared-data
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+    depends_on:
+      - swarm-api
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+        reservations:
+          memory: 1G
+          cpus: '1'
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/docker_health_checker.py", "--service", "autogpt", "--port", "3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "com.swarm.service=autogpt"
+      - "com.swarm.tier=primary"
+
+  # Secondary AutoGPT Service for Failover
+  autogpt-secondary:
+    image: significantgravitas/autogpt:latest
+    container_name: swarm-autogpt-secondary
+    hostname: autogpt-secondary
+    ports:
+      - "3001:3000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - AUTOGPT_WORKSPACE_PATH=/workspace
+      - AUTOGPT_PLUGINS_PATH=/plugins
+      - AUTOGPT_LOGS_PATH=/logs
+      - SWARM_MODE=true
+      - SWARM_AGENT_ID=autogpt-secondary
+      - SWARM_API_ENDPOINT=http://swarm-api-primary:8001
+      - SWARM_MEMORY_SYNC=true
+      - ENABLE_ERROR_RECOVERY=true
+      - ENABLE_HEALTH_MONITORING=true
+      - CONTINUOUS_MODE=false
+      - TEMPERATURE=0.7
+      - MAX_ITERATIONS=50
+      - INSTANCE_PRIORITY=2
+      - STANDBY_MODE=true
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./agents/autogpt/workspace-secondary:/workspace
+      - ./agents/autogpt/plugins:/plugins
+      - ./agents/autogpt/logs-secondary:/logs
+      - ./agents/autogpt/config:/config
+      - ./data:/shared-data
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+    depends_on:
+      - swarm-api
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/docker_health_checker.py", "--service", "autogpt", "--port", "3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "com.swarm.service=autogpt"
+      - "com.swarm.tier=secondary"
+
+  # Fallback AutoGPT Service (Minimal Configuration)
+  autogpt-fallback:
+    image: significantgravitas/autogpt:latest
+    container_name: swarm-autogpt-fallback
+    hostname: autogpt-fallback
+    ports:
+      - "3002:3000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - AUTOGPT_WORKSPACE_PATH=/workspace
+      - AUTOGPT_LOGS_PATH=/logs
+      - SWARM_MODE=true
+      - SWARM_AGENT_ID=autogpt-fallback
+      - SWARM_API_ENDPOINT=http://swarm-api-primary:8001
+      - CONTINUOUS_MODE=false
+      - TEMPERATURE=0.5
+      - MAX_ITERATIONS=25
+      - INSTANCE_PRIORITY=3
+      - EMERGENCY_MODE=true
+      - LOG_LEVEL=WARNING
+    volumes:
+      - ./agents/autogpt/workspace-fallback:/workspace
+      - ./agents/autogpt/logs-fallback:/logs
+      - ./data:/shared-data
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+    depends_on:
+      - swarm-api
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/docker_health_checker.py", "--service", "autogpt", "--port", "3000"]
+      interval: 60s
+      timeout: 10s
+      retries: 2
+      start_period: 60s
+    labels:
+      - "com.swarm.service=autogpt"
+      - "com.swarm.tier=fallback"
+
+  # Database Synchronization Service
+  database-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile.database-sync
+    container_name: swarm-database-sync
+    hostname: database-sync
+    environment:
+      - SYNC_MODE=distributed
+      - PRIMARY_DATABASE_PATH=/data/swarm_memory.db
+      - SYNC_DATABASE_PATH=/data/swarm_sync.db
+      - BACKUP_DIRECTORY=/backups
+      - SYNC_INTERVAL=60
+      - CONFLICT_RESOLUTION=latest_wins
+      - ENABLE_AUTO_BACKUP=true
+      - BACKUP_INTERVAL=3600
+      - BACKUP_RETENTION_HOURS=168
+      - NODE_ID=primary-sync
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/data
+      - ./backups:/backups
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+    depends_on:
+      - swarm-api
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/database_sync_layer.py", "--health-check"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=database-sync"
+      - "com.swarm.tier=core"
+
+  # Integration Validator Service
+  integration-validator:
+    build:
+      context: .
+      dockerfile: Dockerfile.validator
+    container_name: swarm-integration-validator
+    hostname: integration-validator
+    environment:
+      - VALIDATOR_MODE=continuous
+      - CHECK_INTERVAL=300
+      - ENABLE_AUTO_FIX=true
+      - NOTIFICATION_WEBHOOK=${SLACK_WEBHOOK_URL:-}
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
+      - ./src/ai_platform:/app/enhanced
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - swarm-network
+      - monitoring-network
+    depends_on:
+      - swarm-api
+      - autogpt-primary
+      - api-bridge
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/autogpt_integration_validator.py", "--health-check"]
+      interval: 120s
+      timeout: 30s
+      retries: 2
+    labels:
+      - "com.swarm.service=validator"
+      - "com.swarm.tier=monitoring"
+
+  # Enhanced Queen Agent with Error Handling
+  queen:
+    build:
+      context: .
+      dockerfile: Dockerfile.queen-enhanced
+    container_name: swarm-queen
+    hostname: queen
+    environment:
+      - AGENT_TYPE=queen
+      - AGENT_PRIORITY=10
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SWARM_API_ENDPOINT=http://swarm-api-primary:8001
+      - AUTOGPT_ENDPOINT=http://autogpt-primary:3000
+      - DATABASE_PATH=/data/swarm_memory.db
+      - ENABLE_ERROR_RECOVERY=true
+      - ENABLE_CIRCUIT_BREAKER=true
+      - ENABLE_HEALTH_MONITORING=true
+      - MAX_CONCURRENT_TASKS=10
+      - TASK_TIMEOUT_SECONDS=300
+      - COLLABORATION_ENABLED=true
+      - AUTO_SCALE=true
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ./logs:/logs
+      - ./src/ai_platform:/app/enhanced
+    networks:
+      - swarm-network
+    depends_on:
+      - swarm-api
+      - autogpt-primary
+      - api-bridge
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    healthcheck:
+      test: ["CMD", "python", "/app/enhanced/docker_health_checker.py", "--service", "queen"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=queen"
+      - "com.swarm.tier=core"
+
+  # Enhanced Redis with Persistence and Monitoring
+  redis:
+    image: redis:7-alpine
+    container_name: swarm-redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-swarmredis123}
+    volumes:
+      - redis-data:/data
+      - ./config/redis.conf:/etc/redis/redis.conf:ro
+    networks:
+      - swarm-network
+      - monitoring-network
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis.conf --requirepass ${REDIS_PASSWORD:-swarmredis123}
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD", "redis-cli", "--no-auth-warning", "-a", "${REDIS_PASSWORD:-swarmredis123}", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=redis"
+      - "com.swarm.tier=cache"
+
+  # Enhanced Prometheus with Extended Configuration
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: swarm-prometheus
+    hostname: prometheus
+    ports:
+      - "9090:9090"
+    environment:
+      - PROMETHEUS_RETENTION_TIME=30d
+      - PROMETHEUS_STORAGE_RETENTION_SIZE=10GB
+    volumes:
+      - ./monitoring/prometheus-enhanced.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/rules:/etc/prometheus/rules:ro
+      - prometheus-data:/prometheus
+    networks:
+      - monitoring-network
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+      - '--storage.tsdb.retention.size=10GB'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=prometheus"
+      - "com.swarm.tier=monitoring"
+
+  # Enhanced Grafana with Pre-configured Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: swarm-grafana
+    hostname: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_SECURITY_SECRET_KEY=${GRAFANA_SECRET_KEY:-}
+      - GF_INSTALL_PLUGINS=redis-datasource,prometheus-datasource
+      - GF_FEATURE_TOGGLES_ENABLE=ngalert
+      - GF_ALERTING_ENABLED=true
+      - GF_UNIFIED_ALERTING_ENABLED=true
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./monitoring/grafana/alerting:/etc/grafana/provisioning/alerting:ro
+    networks:
+      - monitoring-network
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=grafana"
+      - "com.swarm.tier=monitoring"
+
+  # AlertManager for Enhanced Notifications
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: swarm-alertmanager
+    hostname: alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    networks:
+      - monitoring-network
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+      - '--web.external-url=http://localhost:9093'
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=alertmanager"
+      - "com.swarm.tier=monitoring"
+
+  # Node Exporter for System Metrics
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: swarm-node-exporter
+    hostname: node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    networks:
+      - monitoring-network
+    restart: unless-stopped
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.25'
+        reservations:
+          memory: 32M
+          cpus: '0.1'
+    labels:
+      - "com.swarm.service=node-exporter"
+      - "com.swarm.tier=monitoring"
+
+  # Load Balancer for AutoGPT Services
+  nginx-loadbalancer:
+    image: nginx:alpine
+    container_name: swarm-nginx-lb
+    hostname: nginx-lb
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./config/ssl:/etc/nginx/ssl:ro
+    networks:
+      - swarm-network
+      - monitoring-network
+    depends_on:
+      - autogpt-primary
+      - autogpt-secondary
+      - api-bridge
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.25'
+        reservations:
+          memory: 32M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.swarm.service=loadbalancer"
+      - "com.swarm.tier=proxy"
+
+  # Backup Service for Data Protection
+  backup-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.backup
+    container_name: swarm-backup-service
+    hostname: backup-service
+    environment:
+      - BACKUP_SCHEDULE=0 2 * * *  # Daily at 2 AM
+      - BACKUP_RETENTION_DAYS=30
+      - BACKUP_COMPRESSION=true
+      - BACKUP_ENCRYPTION=${BACKUP_ENCRYPTION_KEY:-}
+      - S3_BUCKET=${BACKUP_S3_BUCKET:-}
+      - S3_ACCESS_KEY=${AWS_ACCESS_KEY_ID:-}
+      - S3_SECRET_KEY=${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - ./data:/source-data:ro
+      - ./backups:/backups
+      - backup-data:/backup-storage
+    networks:
+      - swarm-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+    labels:
+      - "com.swarm.service=backup"
+      - "com.swarm.tier=utility"
+
+# Enhanced Network Configuration
+networks:
+  swarm-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: "true"
+      com.docker.network.bridge.enable_icc: "true"
+    labels:
+      - "com.swarm.network=primary"
+  
+  monitoring-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1
+    labels:
+      - "com.swarm.network=monitoring"
+
+# Enhanced Volume Configuration
+volumes:
+  redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/redis
+    labels:
+      - "com.swarm.volume=redis-data"
+  
+  prometheus-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/prometheus
+    labels:
+      - "com.swarm.volume=prometheus-data"
+  
+  grafana-data:
+    driver: local
+    driver_opts:
+      type: none  
+      o: bind
+      device: ./data/grafana
+    labels:
+      - "com.swarm.volume=grafana-data"
+  
+  alertmanager-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/alertmanager
+    labels:
+      - "com.swarm.volume=alertmanager-data"
+  
+  backup-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/backups
+    labels:
+      - "com.swarm.volume=backup-data"
+
+# Global Configuration
+configs:
+  redis-config:
+    file: ./config/redis.conf
+  nginx-config:
+    file: ./config/nginx.conf
+  prometheus-config:
+    file: ./monitoring/prometheus-enhanced.yml
+
+# Secrets Management (if using Docker Swarm mode)
+secrets:
+  api-keys:
+    external: true
+  database-passwords:
+    external: true
+  ssl-certificates:
+    external: true

@@ -1,0 +1,204 @@
+version: '3.8'
+
+# CPU-Optimized AI Swarm for Intel i9-13900K (32 logical processors)
+# Performance-tuned configuration for maximum AI processing
+
+services:
+  # Main AI Swarm - Uses 16 cores (50% of CPU)
+  swarm-master-optimized:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: swarm-master-optimized
+    hostname: swarm-master-optimized
+    ports:
+      - "8000:8000"
+    environment:
+      - SWARM_MODE=production
+      - DATABASE_PATH=/data/unified_swarm.db
+      - ENABLE_ALL_INTEGRATIONS=true
+      - LOG_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+      # CPU Optimization Variables
+      - OMP_NUM_THREADS=16
+      - NUMBA_NUM_THREADS=16
+      - MKL_NUM_THREADS=16
+      - OPENBLAS_NUM_THREADS=16
+      - AI_WORKER_THREADS=8
+      - AI_BATCH_SIZE=64
+      - AI_QUEUE_SIZE=2000
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
+      - ./config:/config
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '16'      # 50% of 32 cores
+          memory: 12G     # Increased memory
+        reservations:
+          cpus: '8'       # Minimum 8 cores guaranteed
+          memory: 4G
+    healthcheck:
+      test: ["CMD", "python", "docker_health_check.py", "--check", "api"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # AI Worker 1 - Uses 8 cores (25% of CPU)
+  swarm-worker-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: swarm-worker-1
+    hostname: swarm-worker-1
+    environment:
+      - SWARM_MODE=worker
+      - MASTER_HOST=swarm-master-optimized
+      - REDIS_HOST=swarm-cache-optimized
+      # CPU Optimization Variables
+      - OMP_NUM_THREADS=8
+      - NUMBA_NUM_THREADS=8
+      - AI_WORKER_THREADS=4
+      - AI_BATCH_SIZE=32
+    volumes:
+      - ./logs:/logs
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '8'       # 25% of 32 cores
+          memory: 6G
+        reservations:
+          cpus: '4'
+          memory: 2G
+    restart: unless-stopped
+    depends_on:
+      - swarm-master-optimized
+
+  # AI Worker 2 - Uses 4 cores (12% of CPU)
+  swarm-worker-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: swarm-worker-2
+    hostname: swarm-worker-2
+    environment:
+      - SWARM_MODE=worker
+      - MASTER_HOST=swarm-master-optimized
+      - REDIS_HOST=swarm-cache-optimized
+      # CPU Optimization Variables
+      - OMP_NUM_THREADS=4
+      - NUMBA_NUM_THREADS=4
+      - AI_WORKER_THREADS=2
+      - AI_BATCH_SIZE=16
+    volumes:
+      - ./logs:/logs
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '4'       # 12% of 32 cores
+          memory: 4G
+        reservations:
+          cpus: '2'
+          memory: 1G
+    restart: unless-stopped
+    depends_on:
+      - swarm-master-optimized
+
+  # Optimized Redis Cache - Uses 2 cores with multi-threading
+  swarm-cache-optimized:
+    image: redis:7-alpine
+    container_name: swarm-cache-optimized
+    hostname: swarm-cache-optimized
+    expose:
+      - "6379"
+    command: >
+      redis-server 
+      --maxmemory 4gb
+      --maxmemory-policy allkeys-lru
+      --io-threads 4
+      --io-threads-do-reads yes
+      --tcp-backlog 511
+      --timeout 0
+      --tcp-keepalive 300
+      --save 900 1
+      --save 300 10
+      --save 60 10000
+    volumes:
+      - redis-optimized-data:/data
+      - ./redis-optimized.conf:/usr/local/etc/redis/redis.conf:ro
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'       # 2 dedicated cores for Redis
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Portainer - Lightweight management
+  portainer-optimized:
+    image: portainer/portainer-ce:latest
+    container_name: portainer-optimized
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-optimized-data:/data
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'     # Half core for management
+          memory: 512M
+    restart: unless-stopped
+
+  # CPU Performance Monitor
+  cpu-monitor:
+    image: prom/node-exporter:latest
+    container_name: cpu-monitor
+    ports:
+      - "9100:9100"
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    networks:
+      - swarm-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'     # Minimal CPU for monitoring
+          memory: 256M
+    restart: unless-stopped
+
+networks:
+  swarm-network:
+    driver: bridge
+    name: swarm-network-optimized
+
+volumes:
+  redis-optimized-data:
+    name: redis-optimized-data
+  portainer-optimized-data:
+    name: portainer-optimized-data

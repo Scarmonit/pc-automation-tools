@@ -1,0 +1,21 @@
+{
+  "scan_date": "2025-09-05T22:18:53.242141",
+  "targets": 2,
+  "total_findings": 1,
+  "total_pages": 4,
+  "total_duration": 3.7432684898376465,
+  "results": [
+    {
+      "target": "https://api.github.com",
+      "pages_scanned": 1,
+      "findings": 0,
+      "duration": 0.9020159244537354
+    },
+    {
+      "target": "https://jsonplaceholder.typicode.com",
+      "pages_scanned": 3,
+      "findings": 1,
+      "duration": 2.841252565383911
+    }
+  ]
+}

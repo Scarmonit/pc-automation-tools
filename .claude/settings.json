@@ -1,0 +1,92 @@
+{
+  "allowedTools": [
+    "Edit",
+    "MultiEdit",
+    "Write",
+    "Read",
+    "Bash(python main.py *)",
+    "Bash(python -m pytest*)",
+    "Bash(git status)",
+    "Bash(git diff*)",
+    "Bash(git add*)",
+    "Bash(git commit*)",
+    "Bash(git log*)",
+    "Bash(npm run*)",
+    "Bash(docker*)",
+    "Bash(docker-compose*)",
+    "Bash(pip install*)",
+    "Bash(black src/)",
+    "Bash(flake8 src/)",
+    "Bash(python optimize_*.py)",
+    "Bash(python quick_*.py)",
+    "Bash(python parallel_security_orchestrator.py)",
+    "Bash(ls*)",
+    "Bash(cd*)",
+    "Bash(pwd)",
+    "Bash(cat*)",
+    "Bash(grep*)",
+    "Bash(find*)",
+    "Bash(echo*)",
+    "Bash(mkdir*)",
+    "Bash(rm -f test_*)",
+    "Bash(rm -f *.tmp)",
+    "Bash(rm -f *.log)",
+    "Glob",
+    "Grep",
+    "WebSearch",
+    "WebFetch",
+    "TodoWrite",
+    "Task",
+    "NotebookEdit"
+  ],
+  "disallowedTools": [
+    "Bash(rm -rf /)",
+    "Bash(sudo rm*)",
+    "Bash(chmod 777*)",
+    "Bash(curl * | bash)",
+    "Bash(wget * | bash)"
+  ],
+  "defaultModel": "claude-3-5-sonnet-20241022",
+  "contextFiles": [
+    "CLAUDE.md",
+    "README.md",
+    "main.py",
+    ".env.example"
+  ],
+  "projectSettings": {
+    "language": "python",
+    "framework": "fastapi",
+    "testFramework": "pytest",
+    "linter": "flake8",
+    "formatter": "black",
+    "packageManager": "pip",
+    "pythonVersion": "3.8+",
+    "dockerized": true,
+    "cicd": "github-actions"
+  },
+  "workflowSettings": {
+    "autoRunTests": false,
+    "autoFormat": false,
+    "verboseMode": false,
+    "maxTurns": 10,
+    "outputFormat": "markdown"
+  },
+  "securitySettings": {
+    "requireConfirmationForSecurity": true,
+    "blockSensitiveFileAccess": true,
+    "sanitizeInputs": true,
+    "logSecurityOperations": true
+  },
+  "customCommands": {
+    "test": "python -m pytest",
+    "test-coverage": "python -m pytest --cov=src",
+    "format": "black src/ && flake8 src/",
+    "run": "python main.py",
+    "docker-up": "docker-compose up -d",
+    "docker-down": "docker-compose down",
+    "install-deps": "pip install -r requirements.txt",
+    "security-scan": "python main.py security --action webscan",
+    "dolphin-gui": "python main.py dolphin --action gui",
+    "swarm": "python main.py automation --action swarm"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "browser_config": {
+    "headless": true,
+    "verbose": false,
+    "java_script_enabled": true,
+    "browser_type": "chromium",
+    "chrome_args": [
+      "--no-sandbox",
+      "--disable-dev-shm-usage",
+      "",
+      "--memory-pressure-off",
+      "--max_old_space_size=7034"
+    ]
+  },
+  "crawler_config": {
+    "concurrent_crawls": 8,
+    "wait_for": 2000,
+    "page_timeout": 30000,
+    "word_count_threshold": 50,
+    "screenshot": false,
+    "pdf_extraction": true
+  },
+  "performance": {
+    "semaphore_limit": 12,
+    "chunk_size": 1000,
+    "max_retries": 3
+  }
+}

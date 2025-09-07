@@ -1,0 +1,136 @@
+# Enhanced Prometheus Configuration for AI Swarm Intelligence
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'swarm-monitor'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+# Load rules once and periodically evaluate them
+rule_files:
+  - "/etc/prometheus/rules/*.yml"
+
+# Scrape configuration
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 30s
+    metrics_path: /metrics
+
+  # Enhanced Swarm API monitoring
+  - job_name: 'swarm-api'
+    static_configs:
+      - targets: ['swarm-api-primary:8001']
+    scrape_interval: 15s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # Enhanced API Bridge monitoring
+  - job_name: 'api-bridge'
+    static_configs:
+      - targets: ['api-bridge:8002']
+    scrape_interval: 15s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # AutoGPT instances monitoring
+  - job_name: 'autogpt-primary'
+    static_configs:
+      - targets: ['autogpt-primary:3000']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 15s
+
+  - job_name: 'autogpt-secondary'
+    static_configs:
+      - targets: ['autogpt-secondary:3000']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 15s
+
+  - job_name: 'autogpt-fallback'
+    static_configs:
+      - targets: ['autogpt-fallback:3000']
+    scrape_interval: 60s
+    metrics_path: /metrics
+    scrape_timeout: 15s
+
+  # Database sync monitoring
+  - job_name: 'database-sync'
+    static_configs:
+      - targets: ['database-sync:8080']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # Queen agent monitoring
+  - job_name: 'queen-agent'
+    static_configs:
+      - targets: ['queen:8080']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # Redis monitoring
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # System metrics monitoring
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # Docker container metrics
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # Load balancer monitoring
+  - job_name: 'nginx-loadbalancer'
+    static_configs:
+      - targets: ['nginx-lb:9113']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    scrape_timeout: 10s
+
+  # Health check endpoints
+  - job_name: 'swarm-health-checks'
+    static_configs:
+      - targets: 
+        - 'swarm-api-primary:8001'
+        - 'api-bridge:8002'
+        - 'autogpt-primary:3000'
+        - 'autogpt-secondary:3000'
+        - 'queen:8080'
+    scrape_interval: 15s
+    metrics_path: /health
+    scrape_timeout: 5s
+    params:
+      format: ['prometheus']
+
+# Remote write configuration for long-term storage
+remote_write:
+  - url: "http://localhost:9201/api/v1/write"
+    queue_config:
+      max_samples_per_send: 1000
+      max_shards: 200
+      capacity: 2500
