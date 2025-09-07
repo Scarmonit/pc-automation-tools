@@ -1,0 +1,37 @@
+{
+  "allowedTools": [
+    "Edit",
+    "Read",
+    "Write",
+    "Bash(ollama *)",
+    "Bash(docker *)",
+    "Bash(git commit:*)",
+    "Bash(git add:*)",
+    "Bash(python *)",
+    "Bash(aider *)",
+    "Bash(npm test)",
+    "Bash(npm run *)"
+  ],
+  "disallowedTools": [
+    "Bash(rm -rf /)",
+    "Bash(format *)",
+    "Bash(del /s /q *)"
+  ],
+  "defaultModel": "sonnet",
+  "projectContext": {
+    "type": "AI Development Stack",
+    "localModels": [
+      "deepseek-r1:8b",
+      "llama3.1:8b",
+      "dolphin-mistral:latest",
+      "gemma2:27b"
+    ],
+    "services": {
+      "localai": "http://localhost:8080",
+      "ollama": "http://localhost:11434",
+      "flowise": "http://localhost:3001",
+      "openhands": "http://localhost:3000",
+      "orchestrator": "http://localhost:5000"
+    }
+  }
+}

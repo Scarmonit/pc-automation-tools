@@ -1,0 +1,8 @@
+{
+  "ollama": true,
+  "flowise": true,
+  "openhands": true,
+  "grafana": true,
+  "prometheus": true,
+  "ollama_api": false
+}

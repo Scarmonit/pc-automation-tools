@@ -1,0 +1,146 @@
+{
+  "timestamp": "2025-09-04T01:29:01.585644",
+  "integration": "Agency Swarm Intelligence",
+  "version": "1.0.0",
+  "system_overview": {
+    "total_agents": 10,
+    "total_agencies": 3,
+    "tasks_completed": 3,
+    "collaboration_efficiency": 0.442
+  },
+  "agent_breakdown": {
+    "coordinator": {
+      "count": 3,
+      "total_tasks": 3,
+      "agents": [
+        {
+          "name": "Research_Development_Coordinator_1",
+          "tasks_completed": 3,
+          "status": "idle"
+        },
+        {
+          "name": "Quality_Assurance_Coordinator_1",
+          "tasks_completed": 0,
+          "status": "idle"
+        },
+        {
+          "name": "Communications_Coordinator_1",
+          "tasks_completed": 0,
+          "status": "idle"
+        }
+      ]
+    },
+    "researcher": {
+      "count": 1,
+      "total_tasks": 1,
+      "agents": [
+        {
+          "name": "Research_Development_Researcher_2",
+          "tasks_completed": 1,
+          "status": "idle"
+        }
+      ]
+    },
+    "analyst": {
+      "count": 3,
+      "total_tasks": 2,
+      "agents": [
+        {
+          "name": "Research_Development_Analyst_3",
+          "tasks_completed": 2,
+          "status": "idle"
+        },
+        {
+          "name": "Quality_Assurance_Analyst_3",
+          "tasks_completed": 0,
+          "status": "idle"
+        },
+        {
+          "name": "Communications_Analyst_3",
+          "tasks_completed": 0,
+          "status": "idle"
+        }
+      ]
+    },
+    "developer": {
+      "count": 1,
+      "total_tasks": 1,
+      "agents": [
+        {
+          "name": "Research_Development_Developer_4",
+          "tasks_completed": 1,
+          "status": "idle"
+        }
+      ]
+    },
+    "qa_specialist": {
+      "count": 1,
+      "total_tasks": 1,
+      "agents": [
+        {
+          "name": "Quality_Assurance_Qa_Specialist_2",
+          "tasks_completed": 1,
+          "status": "idle"
+        }
+      ]
+    },
+    "communicator": {
+      "count": 1,
+      "total_tasks": 1,
+      "agents": [
+        {
+          "name": "Communications_Communicator_2",
+          "tasks_completed": 1,
+          "status": "idle"
+        }
+      ]
+    }
+  },
+  "agency_details": [
+    "Research_Development",
+    "Quality_Assurance",
+    "Communications"
+  ],
+  "performance_metrics": {
+    "average_task_completion_time": 1.65,
+    "success_rate": 100.0,
+    "agent_utilization": 0.9
+  },
+  "capabilities": [
+    "Multi-agent coordination",
+    "Specialized role assignment",
+    "Collaborative task execution",
+    "Quality assurance integration",
+    "Performance optimization",
+    "Dynamic agent creation",
+    "Agency management",
+    "Communication orchestration",
+    "Task complexity handling",
+    "Efficiency monitoring"
+  ],
+  "agent_roles": [
+    "communicator",
+    "analyst",
+    "developer",
+    "researcher",
+    "coordinator",
+    "qa_specialist"
+  ],
+  "recent_completions": [
+    {
+      "task": "Market Research Analysis",
+      "agents": 3,
+      "duration": 30
+    },
+    {
+      "task": "Software Development Sprint",
+      "agents": 3,
+      "duration": 45
+    },
+    {
+      "task": "Communication Campaign",
+      "agents": 3,
+      "duration": 25
+    }
+  ]
+}

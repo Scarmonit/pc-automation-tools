@@ -1,0 +1,71 @@
+# Core Dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+numpy>=1.24.0
+
+# Web Framework & API
+aiohttp>=3.9.0
+httpx>=0.25.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+selenium>=4.15.0
+
+# Database
+sqlalchemy>=2.0.0
+asyncpg>=0.29.0
+redis>=5.0.0
+motor>=3.3.0  # MongoDB async driver
+psycopg2-binary>=2.9.0
+
+# AI/ML Libraries
+openai>=1.0.0
+anthropic>=0.7.0
+transformers>=4.35.0
+torch>=2.1.0
+langchain>=0.0.350
+chromadb>=0.4.0
+
+# Security & Auth
+cryptography>=41.0.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.6
+
+# Web Scraping
+scrapy>=2.11.0
+playwright>=1.40.0
+crawl4ai>=0.1.0
+
+# Monitoring & Logging
+prometheus-client>=0.19.0
+structlog>=23.2.0
+rich>=13.7.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# Utilities
+pyyaml>=6.0.1
+click>=8.1.0
+tabulate>=0.9.0
+tqdm>=4.66.0
+
+# Docker & Deployment
+docker>=6.1.0
+docker-compose>=1.29.0
+
+# Message Queue
+aiomqtt>=2.0.0
+celery>=5.3.0
+kombu>=5.3.0
+
+# Optional Dependencies for specific integrations
+# Uncomment as needed:
+# signalr-client-aio>=0.0.1.6.2  # SignalR integration
+# bayesian-optimization>=1.4.0  # Bayesian networks
+# micropython-unix-port>=1.20  # MicroPython
+# ollama>=0.1.0  # Ollama integration

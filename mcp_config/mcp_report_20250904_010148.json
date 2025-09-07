@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-09-04T01:01:48.845641",
+  "mcp_status": "operational",
+  "contexts": {
+    "total": 2,
+    "active": 0
+  },
+  "databases": {
+    "registered": 2,
+    "connected": 2,
+    "types": [
+      "sqlite",
+      "mysql"
+    ]
+  },
+  "cache": {
+    "size": 4,
+    "max_size": 1000
+  },
+  "features": [
+    "Multi-database support",
+    "Query caching",
+    "Connection pooling",
+    "MCP context management",
+    "Async operations",
+    "Schema management",
+    "Query logging"
+  ]
+}

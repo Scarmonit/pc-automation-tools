@@ -1,0 +1,61 @@
+# LocalAI Configuration for LLMStack Integration
+# This configuration enables LocalAI to serve local models to all AI frameworks
+
+# Server Configuration
+bind: 0.0.0.0:8080
+context_size: 8192
+threads: 8
+debug: false
+
+# Model Configuration
+models:
+  # Default model configuration
+  default:
+    backend: llama
+    parameters:
+      model: "llama-2-7b-chat.gguf"
+      temperature: 0.7
+      top_p: 0.9
+      top_k: 40
+      max_tokens: 2048
+      
+  # GPT-compatible model
+  gpt-3.5-turbo:
+    backend: llama
+    parameters:
+      model: "llama-2-7b-chat.gguf"
+      temperature: 0.7
+      top_p: 0.9
+      
+  # Embedding model
+  text-embedding-ada-002:
+    backend: sentence-transformers
+    parameters:
+      model: "all-MiniLM-L6-v2"
+
+# API Configuration
+api:
+  # OpenAI compatible endpoints
+  openai_compatible: true
+  base_path: "/v1"
+  
+  # CORS settings for web access
+  cors:
+    allow_origins: ["*"]
+    allow_methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    allow_headers: ["*"]
+
+# Storage paths
+model_path: "./models"
+upload_path: "./uploads"
+image_path: "./images"
+
+# Performance settings
+parallel: true
+single_active_backend: false
+preload_models: ["gpt-3.5-turbo"]
+
+# Logging
+log_level: "info"
+log_to_file: true
+log_file: "./logs/localai.log"
