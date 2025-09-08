@@ -235,6 +235,7 @@ jobs:
       uses: actions/upload-pages-artifact@v4
       with:
         path: docs/
+        include-dotfiles: true
     
     - name: Deploy to GitHub Pages
       id: deployment
