@@ -95,4 +95,31 @@ docker run -d \
 - Provide troubleshooting sections for complex installations
 - Include example code and configuration snippets
 
+## Pull Request Review Guidelines
+When reviewing pull requests, focus on:
+
+### Security Considerations
+- Check for hardcoded credentials or API keys
+- Verify proper environment variable usage
+- Review file permissions and access controls
+- Validate input sanitization and validation
+
+### Code Quality Standards
+- Ensure consistent code formatting and style
+- Verify proper error handling and logging
+- Check for appropriate documentation and comments
+- Validate test coverage for new functionality
+
+### AI Agent Integration
+- Ensure new agents follow the unified orchestrator pattern
+- Verify compatibility with existing AI frameworks
+- Check for proper configuration management
+- Validate agent lifecycle management
+
+### Configuration Management
+- Review environment variable usage
+- Check Docker and service configurations
+- Validate configuration file formats and syntax
+- Ensure proper secrets management
+
 When suggesting code, prioritize compatibility with the existing infrastructure and follow the established patterns for agent development and service deployment.

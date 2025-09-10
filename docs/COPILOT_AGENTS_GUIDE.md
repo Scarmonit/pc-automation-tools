@@ -281,7 +281,11 @@ Specialized support for:
 
 ## 🛟 Troubleshooting
 
-### Copilot Not Working
+For detailed troubleshooting of Copilot issues, see [COPILOT_TROUBLESHOOTING.md](COPILOT_TROUBLESHOOTING.md).
+
+### Quick Fixes
+
+**Copilot Not Working**:
 ```bash
 # Check Copilot status
 code --list-extensions | grep copilot
@@ -290,18 +294,22 @@ code --list-extensions | grep copilot
 # CMD/Ctrl + Shift + P -> "GitHub Copilot: Sign In"
 ```
 
-### No Repository-Specific Suggestions
+**Pull Request Review Issues**:
+```bash
+# Diagnose why files can't be reviewed
+python scripts/diagnose_copilot_review.py file1.py file2.md
+
+# Validate configuration
+python scripts/validate_copilot_config.py
+```
+
+**No Repository-Specific Suggestions**:
 ```bash
 # Re-run the integration script
 python3 llmstack/copilot_agent_integration.py
 
 # Restart VS Code
 ```
-
-### Performance Issues
-1. Check VS Code extensions (disable unnecessary ones)
-2. Ensure sufficient system memory (8GB+ recommended)
-3. Update VS Code and Copilot extension to latest versions
 
 ## 📈 Next Steps
 

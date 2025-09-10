@@ -60,12 +60,33 @@ repository:
   # AI agent development focus
   domain: "ai_automation"
   
-  # Key file patterns to prioritize
+  # Key file patterns to prioritize for review
   important_files:
-    - "llmstack/**/*.py"
-    - "scripts/**/*.sh" 
-    - "**/config*.json"
-    - "**/docker-compose*.yml"
+    - "**/*.py"              # All Python files
+    - "**/*.sh"              # All shell scripts
+    - "**/*.md"              # All Markdown documentation
+    - "**/*.yml"             # All YAML files
+    - "**/*.yaml"            # All YAML files
+    - "**/docker-compose*.yml"  # Docker compose files
+    - "**/docker-compose*.yaml" # Docker compose files
+    - "**/*.json"            # All JSON configuration files
+    - "**/*.txt"             # All text files
+    - "**/*.conf"            # Configuration files
+    - "**/*.cfg"             # Configuration files
+    - "**/*.ini"             # INI files
+    - "**/*.bat"             # Windows batch files
+    - "**/*.ps1"             # PowerShell scripts
+    - "**/*.css"             # CSS files
+    - "**/*.js"              # JavaScript files
+    - "*.py"                 # Root level Python files
+    - "*.sh"                 # Root level shell scripts
+    - "*.md"                 # Root level documentation
+    - ".github/**/*"         # GitHub configuration
+    - "Dockerfile*"          # Dockerfiles
+    - "requirements*.txt"    # Python requirements
+    - ".env*"                # Environment files
+    - ".gitignore"           # Git ignore file
+    - "Makefile"             # Makefiles
   
   # Common code patterns for this repo
   patterns:
@@ -118,3 +139,22 @@ workflows:
       - "Include health checks"
       - "Add monitoring"
       - "Document usage"
+
+# Pull request review settings
+review:
+  enabled: true
+  max_files: 50              # Maximum files to review in one PR
+  max_file_size: 10000       # Maximum file size in lines to review
+  skip_patterns:
+    - "*.log"                # Skip log files
+    - "**/.git/**"           # Skip git internal files
+    - "**/node_modules/**"   # Skip node modules
+    - "**/__pycache__/**"    # Skip Python cache
+    - "**/.pytest_cache/**" # Skip pytest cache
+    - "**/venv/**"           # Skip virtual environments
+    - "**/env/**"            # Skip environment directories
+  focus_on:
+    - "security"             # Focus on security issues
+    - "code_quality"         # Focus on code quality
+    - "documentation"        # Focus on documentation quality
+    - "best_practices"       # Focus on best practices
